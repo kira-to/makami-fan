@@ -111,7 +111,7 @@ function generateGallery() {
     visitedCastles.forEach(castle => {
         const figure = document.createElement('figure');
         figure.innerHTML = `
-            <img src="assets/img/no${castle.no.toString().padStart(2, '0')}.jpg" 
+            <img src="data/IMG_${castle.no.toString().padStart(2, '0')}.JPG" 
                  alt="${castle.name}" 
                  onerror="this.src='https://via.placeholder.com/300x200/667eea/ffffff?text=${encodeURIComponent(castle.name)}'">
             <figcaption>
@@ -212,6 +212,24 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // ページ読み込み時のアニメーション
+// ===== 投票開始カウントダウン =====
+(function(){
+  const voteTarget = new Date("2025-08-01T00:00:00+09:00").getTime();
+  const vc = document.getElementById('vote-countdown');
+  if(!vc) return;
+  function updateCountdown(){
+    const diff = voteTarget - Date.now();
+    if(diff<=0){vc.textContent='投票受付中！';return;}
+    const d=Math.floor(diff/864e5);
+    const h=Math.floor(diff%864e5/36e5);
+    const m=Math.floor(diff%36e5/6e4);
+    const s=Math.floor(diff%6e4/1e3);
+    vc.textContent=`投票開始まで ${d}日 ${h}時間 ${m}分 ${s}秒`;
+  }
+  updateCountdown();
+  setInterval(updateCountdown,1000);
+})();
+
 window.addEventListener('load', () => {
     document.body.style.opacity = '0';
     document.body.style.transition = 'opacity 0.5s ease';
