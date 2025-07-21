@@ -3,55 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CryptoNinja Partners - マカミ</title>
-    <link rel="stylesheet" href="style.css">
+    <title>マカミ応援サイト - 100名城チャレンジ</title>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
     <header>
-        <h1>MAKAMI</h1>
+        <img src="data/Makami-01.avif" alt="マカミ" class="logo">
+        <h1>マカミ応援サイト</h1>
         <nav>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#gallery">Gallery</a></li>
-                <li><a href="#links">Links</a></li>
-            </ul>
+            <a href="#progress">進捗</a>
+            <a href="#timeline">履歴</a>
+            <a href="#map">マップ</a>
+            <a href="#gallery">ギャラリー</a>
+            <a href="message.html">応援掲示板</a>
         </nav>
     </header>
 
     <main>
-        <section id="hero">
-            <!-- p5.js canvas will be here -->
-        </section>
-
-        <section id="about">
-            <h2>マカミについて</h2>
-            <p>穏やかで包容力があり、周囲から一目置かれる存在。<br>慈悲深く、仲間を傷つけるものとは容赦なく戦う。<br>伊賀の忍者「紫苑(シオン)」のパートナーです。</p>
-        </section>
-
-        <h2>ギャラリー</h2>
-            <div class="gallery-grid">
-                <img src="https://via.placeholder.com/300" alt="サンプル画像1">
-                <img src="https://via.placeholder.com/300" alt="サンプル画像2">
-                <img src="https://via.placeholder.com/300" alt="サンプル画像3">
-                <img src="https://via.placeholder.com/300" alt="サンプル画像4">
-                <img src="https://via.placeholder.com/300" alt="サンプル画像5">
-                <img src="https://via.placeholder.com/300" alt="サンプル画像6">
+        <!-- 3-1. 総合進捗バー -->
+        <section id="progress">
+            <h2>100名城チャレンジ進捗</h2>
+            <div class="bar">
+                <span id="bar-inner"></span>
             </div>
+            <p id="ratio">0 / 100 名城制覇</p>
+        </section>
 
-        <section id="links">
-            <h2>関連リンク</h2>
-            <ul>
-                <li><a href="https://www.cryptoninja-partners.xyz/" target="_blank">CNP公式サイト</a></li>
-                <li><a href="https://opensea.io/collection/cryptoninjapartners" target="_blank">OpenSea</a></li>
-            </ul>
+        <!-- 3-2. タイムライン -->
+        <section id="timeline">
+            <h2>訪問履歴</h2>
+            <ul id="timeline-list"></ul>
+        </section>
+
+        <!-- 3-3. インタラクティブ日本地図 -->
+        <section id="map">
+            <h2>訪問マップ</h2>
+            <div class="map-container">
+                <svg id="japan-map" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+                    <!-- 簡略化された日本地図 -->
+                    <!-- 本州 -->
+                    <path d="M100 200 L600 180 L650 220 L620 280 L580 300 L400 320 L200 300 L120 250 Z" fill="#f0f0f0" stroke="#ccc" stroke-width="2"/>
+                    <!-- 北海道 -->
+                    <path d="M500 50 L580 60 L590 120 L520 130 L480 100 Z" fill="#f0f0f0" stroke="#ccc" stroke-width="2"/>
+                    <!-- 四国 -->
+                    <path d="M350 350 L450 340 L460 380 L380 390 Z" fill="#f0f0f0" stroke="#ccc" stroke-width="2"/>
+                    <!-- 九州 -->
+                    <path d="M200 380 L300 370 L320 450 L250 460 L180 420 Z" fill="#f0f0f0" stroke="#ccc" stroke-width="2"/>
+                    
+                    <!-- 城の位置マーカー（例：5城分） -->
+                    <circle id="castle-11" cx="520" cy="240" r="8" fill="#ddd" stroke="#999" stroke-width="2" class="castle-marker"/>
+                    <circle id="castle-12" cx="480" cy="220" r="8" fill="#ddd" stroke="#999" stroke-width="2" class="castle-marker"/>
+                    <circle id="castle-13" cx="500" cy="260" r="8" fill="#ddd" stroke="#999" stroke-width="2" class="castle-marker"/>
+                    <circle id="castle-14" cx="550" cy="280" r="8" fill="#ddd" stroke="#999" stroke-width="2" class="castle-marker"/>
+                    <circle id="castle-20" cx="580" cy="300" r="8" fill="#ddd" stroke="#999" stroke-width="2" class="castle-marker"/>
+                </svg>
+            </div>
+        </section>
+
+        <!-- 3-4. 城カードギャラリー -->
+        <section id="gallery">
+            <h2>フォトギャラリー</h2>
+            <div class="grid" id="gallery-grid"></div>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2025 CNP MAKAMI Fan Site.</p>
+        <p>&copy; 2025 マカミ応援サイト</p>
+        <p><a href="policy.html">免責事項・プライバシーポリシー</a></p>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
-    <script src="sketch.js"></script>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>

@@ -1,0 +1,222 @@
+// 100名城チャレンジサイト メインスクリプト
+
+// 総城数（変更する場合はここを修正）
+const TOTAL_CASTLES = 100;
+let castlesData = [];
+
+// DOM読み込み完了後に初期化
+document.addEventListener('DOMContentLoaded', function() {
+    loadCastlesData();
+});
+
+// JSON読み込み
+async function loadCastlesData() {
+    try {
+        const response = await fetch('data/castles.json');
+        castlesData = await response.json();
+        initializePage();
+    } catch (error) {
+        console.error('城データの読み込みに失敗しました:', error);
+        // エラー時はダミーデータで初期化
+        castlesData = [
+            { "no": 11, "name": "二本松城", "pref": "福島", "visited": true, "date": "2025-07-20" },
+            { "no": 12, "name": "会津若松城", "pref": "福島", "visited": true, "date": "2025-07-20" },
+            { "no": 13, "name": "白河小峰城", "pref": "福島", "visited": true, "date": "2025-07-20" },
+            { "no": 14, "name": "水戸城", "pref": "茨城", "visited": true, "date": "2025-07-19" },
+            { "no": 20, "name": "佐倉城", "pref": "千葉", "visited": true, "date": "2025-07-19" }
+        ];
+        initializePage();
+    }
+}
+
+// ページ初期化
+function initializePage() {
+    updateProgressBar();
+    generateTimeline();
+    highlightMapMarkers();
+    generateGallery();
+}
+
+// 進捗バー更新
+function updateProgressBar() {
+    const visitedCastles = castlesData.filter(castle => castle.visited);
+    const totalCastles = TOTAL_CASTLES;
+    const visitedCount = visitedCastles.length;
+    const percentage = (visitedCount / totalCastles) * 100;
+    
+    const barInner = document.getElementById('bar-inner');
+    const ratio = document.getElementById('ratio');
+    
+    if (barInner) {
+        barInner.style.width = `${percentage}%`;
+    }
+    
+    if (ratio) {
+        ratio.textContent = `${visitedCount} / ${totalCastles} 名城制覇`;
+    }
+}
+
+// タイムライン生成（新しい順）
+function generateTimeline() {
+    const timelineList = document.getElementById('timeline-list');
+    if (!timelineList) return;
+    
+    const visitedCastles = castlesData
+        .filter(castle => castle.visited && castle.date)
+        .sort((a, b) => b.date.localeCompare(a.date));
+    
+    timelineList.innerHTML = '';
+    
+    visitedCastles.forEach(castle => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+            <time>${formatDate(castle.date)}</time>
+            <strong>${castle.name}</strong> (${castle.pref}県)
+        `;
+        timelineList.appendChild(li);
+    });
+    
+    if (visitedCastles.length === 0) {
+        timelineList.innerHTML = '<li>まだ訪問した城がありません</li>';
+    }
+}
+
+// 地図マーカーハイライト
+function highlightMapMarkers() {
+    castlesData.forEach(castle => {
+        const marker = document.getElementById(`castle-${castle.no}`);
+        if (marker && castle.visited) {
+            marker.classList.add('visited');
+            
+            // ツールチップ機能
+            marker.setAttribute('title', `${castle.name} (${castle.date})`);
+            
+            // クリックイベント
+            marker.addEventListener('click', () => {
+                showCastleInfo(castle);
+            });
+        }
+    });
+}
+
+// ギャラリー生成（訪問済みのみ）
+function generateGallery() {
+    const galleryGrid = document.getElementById('gallery-grid');
+    if (!galleryGrid) return;
+    
+    const visitedCastles = castlesData.filter(castle => castle.visited);
+    
+    galleryGrid.innerHTML = '';
+    
+    visitedCastles.forEach(castle => {
+        const figure = document.createElement('figure');
+        figure.innerHTML = `
+            <img src="assets/img/no${castle.no.toString().padStart(2, '0')}.jpg" 
+                 alt="${castle.name}" 
+                 onerror="this.src='https://via.placeholder.com/300x200/667eea/ffffff?text=${encodeURIComponent(castle.name)}'">
+            <figcaption>
+                <strong>${castle.name}</strong><br>
+                No.${castle.no} (${castle.pref}県)<br>
+                <small>${formatDate(castle.date)}</small>
+            </figcaption>
+        `;
+        
+        // 画像クリックで拡大表示
+        const img = figure.querySelector('img');
+        img.addEventListener('click', () => {
+            openImageModal(img.src, castle.name);
+        });
+        
+        galleryGrid.appendChild(figure);
+    });
+    
+    if (visitedCastles.length === 0) {
+        galleryGrid.innerHTML = '<p style="text-align: center; color: #666;">まだ訪問した城の写真がありません</p>';
+    }
+}
+
+// 日付フォーマット
+function formatDate(dateString) {
+    if (!dateString) return '';
+    const date = new Date(dateString);
+    return date.toLocaleDateString('ja-JP', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+}
+
+// 城情報表示（地図マーカークリック時）
+function showCastleInfo(castle) {
+    alert(`${castle.name}\n所在地: ${castle.pref}県\n訪問日: ${formatDate(castle.date)}\nNo.${castle.no}`);
+}
+
+// 画像モーダル表示
+function openImageModal(src, alt) {
+    // シンプルなモーダル実装
+    const modal = document.createElement('div');
+    modal.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        cursor: pointer;
+    `;
+    
+    const img = document.createElement('img');
+    img.src = src;
+    img.alt = alt;
+    img.style.cssText = `
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain;
+        border-radius: 10px;
+    `;
+    
+    modal.appendChild(img);
+    document.body.appendChild(modal);
+    
+    // クリックで閉じる
+    modal.addEventListener('click', () => {
+        document.body.removeChild(modal);
+    });
+    
+    // ESCキーで閉じる
+    const handleEsc = (e) => {
+        if (e.key === 'Escape') {
+            document.body.removeChild(modal);
+            document.removeEventListener('keydown', handleEsc);
+        }
+    };
+    document.addEventListener('keydown', handleEsc);
+}
+
+// スムーススクロール
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+
+// ページ読み込み時のアニメーション
+window.addEventListener('load', () => {
+    document.body.style.opacity = '0';
+    document.body.style.transition = 'opacity 0.5s ease';
+    
+    setTimeout(() => {
+        document.body.style.opacity = '1';
+    }, 100);
+});

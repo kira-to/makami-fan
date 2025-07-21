@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>応援掲示板 - マカミ応援サイト</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .message-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .form-container {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .form-placeholder {
+            background: #f8f9fa;
+            border: 2px dashed #667eea;
+            border-radius: 10px;
+            padding: 3rem 2rem;
+            text-align: center;
+            color: #667eea;
+        }
+        
+        .form-placeholder h3 {
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+        
+        .form-placeholder p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 2rem;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .back-link:hover {
+            background: #5a6fd8;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>マカミ応援サイト</h1>
+        <nav>
+            <a href="index.html">ホーム</a>
+            <a href="index.html#progress">進捗</a>
+            <a href="index.html#timeline">履歴</a>
+            <a href="index.html#map">マップ</a>
+            <a href="index.html#gallery">ギャラリー</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="message-container">
+            <h2>応援掲示板</h2>
+            
+            <div class="form-container">
+                <!-- Googleフォーム埋め込み予定エリア -->
+                <div class="form-placeholder">
+                    <h3>📝 応援メッセージを送る</h3>
+                    <p>マカミの100名城チャレンジを応援するメッセージをお送りください！</p>
+                    <p>こちらにGoogleフォームを埋め込み予定です。</p>
+                    
+                    <!-- 実際のGoogleフォーム埋め込み例（コメントアウト） -->
+                    <!--
+                    <iframe src="https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform?embedded=true" 
+                            width="100%" 
+                            height="600" 
+                            frameborder="0" 
+                            marginheight="0" 
+                            marginwidth="0">
+                        読み込んでいます…
+                    </iframe>
+                    -->
+                </div>
+            </div>
+            
+            <div class="recent-messages">
+                <h3>最新の応援メッセージ</h3>
+                <div class="messages-placeholder">
+                    <p style="text-align: center; color: #666; padding: 2rem;">
+                        最新のコメント表示機能は後日追加予定です
+                    </p>
+                </div>
+            </div>
+            
+            <div style="text-align: center;">
+                <a href="index.html" class="back-link">← ホームに戻る</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 マカミ応援サイト</p>
+        <p><a href="policy.html">免責事項・プライバシーポリシー</a></p>
+    </footer>
+</body>
+</html>
