@@ -2,17 +2,24 @@
 
 // 総城数（変更する場合はここを修正）
 const TOTAL_CASTLES = 100;
+// 城番号→都道府県ID 対応表（MapSVG）
+const castle2Pref = {
+  1:"1",   // 北海道
+  11:"7", 12:"7", 13:"7", // 福島
+  14:"8", // 茨城
+  20:"12"  // 千葉
+};
 let castlesData = [];
 
 // DOM読み込み完了後に初期化
-document.addEventListener('DOMContentLoaded', function() {
-    loadCastlesData();
+document.addEventListener('DOMContentLoaded', () => {
+    loadJapanMap().then(loadCastlesData);
 });
 
 // JSON読み込み
 async function loadCastlesData() {
     try {
-        const response = await fetch('data/castles.json');
+        const response = await fetch(`data/castles.json?v=${Date.now()}`);
         castlesData = await response.json();
         initializePage();
     } catch (error) {
@@ -23,7 +30,8 @@ async function loadCastlesData() {
             { "no": 12, "name": "会津若松城", "pref": "福島", "visited": true, "date": "2025-07-20" },
             { "no": 13, "name": "白河小峰城", "pref": "福島", "visited": true, "date": "2025-07-20" },
             { "no": 14, "name": "水戸城", "pref": "茨城", "visited": true, "date": "2025-07-19" },
-            { "no": 20, "name": "佐倉城", "pref": "千葉", "visited": true, "date": "2025-07-19" }
+            { "no": 20, "name": "佐倉城", "pref": "千葉", "visited": true, "date": "2025-07-19" },
+            { "no": 1, "name": "根室半島チャシ跡群", "pref": "北海道", "visited": true, "date": "2025-07-22" }
         ];
         initializePage();
     }
@@ -83,18 +91,14 @@ function generateTimeline() {
 
 // 地図マーカーハイライト
 function highlightMapMarkers() {
-    castlesData.forEach(castle => {
-        const marker = document.getElementById(`castle-${castle.no}`);
-        if (marker && castle.visited) {
-            marker.classList.add('visited');
-            
-            // ツールチップ機能
-            marker.setAttribute('title', `${castle.name} (${castle.date})`);
-            
-            // クリックイベント
-            marker.addEventListener('click', () => {
-                showCastleInfo(castle);
-            });
+    // SVG がまだ挿入されていなければ後で再試行
+    if(!document.querySelector('#map svg')) return;
+
+    // 都道府県パスをハイライト
+    castlesData.filter(c=>c.visited).forEach(castle => {
+        const prefCode = castle2Pref[castle.no];
+        if(prefCode){
+            document.querySelector(`[data-code='${prefCode}']`)?.classList.add('visited');
         }
     });
 }
@@ -113,7 +117,7 @@ function generateGallery() {
         figure.innerHTML = `
             <img src="data/IMG_${castle.no.toString().padStart(2, '0')}.JPG" 
                  alt="${castle.name}" 
-                 onerror="this.src='https://via.placeholder.com/300x200/667eea/ffffff?text=${encodeURIComponent(castle.name)}'">
+                 onerror="if(this.src.includes('JPG')){this.src='data/IMG_'+${castle.no}+'.jpg';}else{this.src='https://via.placeholder.com/300x200/667eea/ffffff?text=${encodeURIComponent(castle.name)}';}">
             <figcaption>
                 <strong>${castle.name}</strong><br>
                 No.${castle.no} (${castle.pref}県)<br>
@@ -195,6 +199,16 @@ function openImageModal(src, alt) {
         }
     };
     document.addEventListener('keydown', handleEsc);
+}
+
+// 日本地図SVGを読み込み
+function loadJapanMap(){
+  return fetch('https://raw.githubusercontent.com/geolonia/japanese-prefectures/master/map-full.svg')
+    .then(r=>r.text())
+    .then(svg=>{
+      document.querySelector('#map').insertAdjacentHTML('beforeend', svg);
+    })
+    .catch(err=>console.error('SVG読み込み失敗',err));
 }
 
 // スムーススクロール

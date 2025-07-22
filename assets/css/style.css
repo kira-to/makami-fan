@@ -243,6 +243,10 @@ footer a:hover {
   #hero .lead{font-size:1.25rem;}
 }
 
+/* 日本地図スタイル */
+#map svg path { fill:#f3f3f3; stroke:#bbb; stroke-width:.5; transition:fill .3s; }
+#map svg path.visited, #map svg .prefecture.visited path { fill:#e63946; }
+
 /* レスポンシブ対応 */
 @media (max-width: 768px) {
     header h1 {

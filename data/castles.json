@@ -3,5 +3,6 @@
   { "no": 12, "name": "会津若松城", "pref": "福島", "visited": true, "date": "2025-07-20" },
   { "no": 13, "name": "白河小峰城", "pref": "福島", "visited": true, "date": "2025-07-20" },
   { "no": 14, "name": "水戸城", "pref": "茨城", "visited": true, "date": "2025-07-19" },
-  { "no": 20, "name": "佐倉城", "pref": "千葉", "visited": true, "date": "2025-07-19" }
+  { "no": 20, "name": "佐倉城", "pref": "千葉", "visited": true, "date": "2025-07-19" },
+  { "no": 1, "name": "根室半島チャシ跡群", "pref": "北海道", "visited": true, "date": "2025-07-22" }
 ]
