@@ -247,6 +247,76 @@ footer a:hover {
 #map svg path { fill:#f3f3f3; stroke:#bbb; stroke-width:.5; transition:fill .3s; }
 #map svg path.visited, #map svg .prefecture.visited path { fill:#e63946; }
 
+/* ===== Shared Header (サイト共通) ===== */
+.shared-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.shared-header .brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+.shared-header .brand a {
+    color: #fff;
+    text-decoration: none;
+}
+#menu-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: none; /* mobile only */
+}
+#main-nav {
+    display: flex;
+    gap: 1.2rem;
+}
+#main-nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.4rem 0.6rem;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+#main-nav a:hover {
+    background: rgba(255,255,255,0.15);
+}
+@media (max-width: 768px) {
+    #menu-btn {
+        display: block;
+    }
+    #main-nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        background: #764ba2;
+        display: none;
+        padding: 0.5rem 0;
+    }
+    #main-nav.open {
+        display: flex;
+    }
+    #main-nav a {
+        padding: 0.8rem 1rem;
+    }
+}
+#map svg path { fill:#f3f3f3; stroke:#bbb; stroke-width:.5; transition:fill .3s; }
+#map svg path.visited, #map svg .prefecture.visited path { fill:#e63946; }
+
 /* レスポンシブ対応 */
 @media (max-width: 768px) {
     header h1 {

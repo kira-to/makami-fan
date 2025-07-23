@@ -244,6 +244,17 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   setInterval(updateCountdown,1000);
 })();
 
+// ===== ハンバーガーメニュー開閉 =====
+(function(){
+  const btn = document.getElementById('menu-btn');
+  const nav = document.getElementById('main-nav');
+  if(btn && nav){
+    btn.addEventListener('click', () => {
+      nav.classList.toggle('open');
+    });
+  }
+})();
+
 window.addEventListener('load', () => {
     document.body.style.opacity = '0';
     document.body.style.transition = 'opacity 0.5s ease';
