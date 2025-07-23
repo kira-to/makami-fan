@@ -11,6 +11,13 @@ const castle2Pref = {
 };
 let castlesData = [];
 
+// 都道府県名表記（北海道は"県"を付けない等）
+function displayPref(pref){
+  if(!pref) return '';
+  const last = pref.slice(-1);
+  return (last==='都' || last==='道' || last==='府') ? pref : `${pref}県`;
+}
+
 // DOM読み込み完了後に初期化
 document.addEventListener('DOMContentLoaded', () => {
     loadJapanMap().then(loadCastlesData);
@@ -79,7 +86,7 @@ function generateTimeline() {
         const li = document.createElement('li');
         li.innerHTML = `
             <time>${formatDate(castle.date)}</time>
-            <strong>${castle.name}</strong> (${castle.pref}県)
+            <strong>${castle.name}</strong> (${displayPref(castle.pref)})
         `;
         timelineList.appendChild(li);
     });
@@ -120,7 +127,7 @@ function generateGallery() {
                  onerror="if(this.src.includes('JPG')){this.src='data/IMG_'+${castle.no}+'.jpg';}else{this.src='https://via.placeholder.com/300x200/667eea/ffffff?text=${encodeURIComponent(castle.name)}';}">
             <figcaption>
                 <strong>${castle.name}</strong><br>
-                No.${castle.no} (${castle.pref}県)<br>
+                No.${castle.no} (${displayPref(castle.pref)})<br>
                 <small>${formatDate(castle.date)}</small>
             </figcaption>
         `;
@@ -152,7 +159,7 @@ function formatDate(dateString) {
 
 // 城情報表示（地図マーカークリック時）
 function showCastleInfo(castle) {
-    alert(`${castle.name}\n所在地: ${castle.pref}県\n訪問日: ${formatDate(castle.date)}\nNo.${castle.no}`);
+    alert(`${castle.name}\n所在地: ${displayPref(castle.pref)}\n訪問日: ${formatDate(castle.date)}\nNo.${castle.no}`);
 }
 
 // 画像モーダル表示
