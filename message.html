@@ -54,6 +54,25 @@
             background: #5a6fd8;
         }
     </style>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XJ8JMFNRFE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      const section = location.pathname.startsWith('/makami-fan') ? 'castle' :
+                      location.pathname.startsWith('/makami')     ? 'profile' : 'other';
+
+      gtag('config', 'G-XJ8JMFNRFE', {
+        debug_mode: false,
+        send_page_view: true
+      });
+
+      gtag('set', 'user_properties', {
+        site_section: section
+      });
+    </script>
 </head>
 <body>
     <!-- Shared Header -->
