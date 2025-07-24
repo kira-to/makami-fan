@@ -15,13 +15,13 @@
       const section = location.pathname.startsWith('/makami-fan') ? 'castle' :
                       location.pathname.startsWith('/makami')     ? 'profile' : 'other';
 
+      gtag('set', 'user_properties', {
+        site_section: section
+      });
+
       gtag('config', 'G-XJ8JMFNRFE', {
         debug_mode: false,
         send_page_view: true
-      });
-
-      gtag('set', 'user_properties', {
-        site_section: section
       });
     </script>
 </head>
