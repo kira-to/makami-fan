@@ -266,6 +266,17 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   }
 })();
 
+// ===== タイムライン展開トグル =====
+(function(){
+  const scrollbox = document.querySelector('.timeline-scrollbox');
+  const btn = document.getElementById('toggleTimeline');
+  if(!scrollbox || !btn) return;
+  btn.addEventListener('click',()=>{
+    const expanded = scrollbox.classList.toggle('expanded');
+    btn.textContent = expanded ? '閉じる' : 'もっと見る';
+  });
+})();
+
 window.addEventListener('load', () => {
     document.body.style.opacity = '0';
     document.body.style.transition = 'opacity 0.5s ease';

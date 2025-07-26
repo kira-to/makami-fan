@@ -317,6 +317,32 @@ footer a:hover {
 #map svg path { fill:#f3f3f3; stroke:#bbb; stroke-width:.5; transition:fill .3s; }
 #map svg path.visited, #map svg .prefecture.visited path { fill:#e63946; }
 
+/* タイムラインスクロールボックス */
+.timeline-scrollbox{
+    max-height: 300px;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+}
+.timeline-scrollbox.expanded{
+    max-height: none;
+}
+
+/* ゴーストボタン */
+.btn-ghost{
+    background: none;
+    border: 2px solid #667eea;
+    color: #667eea;
+    padding: 0.4rem 1rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background 0.2s,color 0.2s;
+    margin-top: 1rem;
+}
+.btn-ghost:hover{
+    background: #667eea;
+    color: #fff;
+}
+
 /* レスポンシブ対応 */
 @media (max-width: 768px) {
     header h1 {
