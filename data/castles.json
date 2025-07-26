@@ -4,5 +4,9 @@
   { "no": 13, "name": "白河小峰城", "pref": "福島", "visited": true, "date": "2025-07-20" },
   { "no": 14, "name": "水戸城", "pref": "茨城", "visited": true, "date": "2025-07-19" },
   { "no": 20, "name": "佐倉城", "pref": "千葉", "visited": true, "date": "2025-07-19" },
-  { "no": 1, "name": "根室半島チャシ跡群", "pref": "北海道", "visited": true, "date": "2025-07-22" }
+  { "no": 1, "name": "根室半島チャシ跡群", "pref": "北海道", "visited": true, "date": "2025-07-22" },
+  { "no": 26, "name": "松代城", "pref": "長野", "visited": true, "date": "2025-07-26" },
+  { "no": 27, "name": "上田城", "pref": "長野", "visited": true, "date": "2025-07-26" },
+  { "no": 28, "name": "小諸城", "pref": "長野", "visited": true, "date": "2025-07-26" },
+  { "no": 16, "name": "箕輪城", "pref": "群馬", "visited": true, "date": "2025-07-26" }
 ]
