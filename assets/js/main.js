@@ -71,7 +71,7 @@ function updateProgressBar() {
     }
     
     if (ratio) {
-        ratio.textContent = `${visitedCount} / ${totalCastles} 名城制覇`;
+        ratio.textContent = `${visitedCount} / ${totalCastles} 名城制覇 (${percentage.toFixed(0)}%)`;
     }
 }
 
