@@ -11,7 +11,8 @@ const castle2Pref = {
   // === 2025-07-26 追加 ===
   16:"10", 17:"10", // 群馬
   26:"20", 27:"20", 28:"20", // 長野
-  18:"11" // 埼玉
+  18:"11", // 埼玉
+  98:"47" // 沖縄
 };
 let castlesData = [];
 
@@ -126,7 +127,7 @@ function generateGallery() {
     visitedCastles.forEach(castle => {
         const figure = document.createElement('figure');
         figure.innerHTML = `
-            <img src="data/IMG_${castle.no.toString().padStart(2, '0')}.JPG" 
+            <img src="data/IMG_${castle.no.toString().padStart(2, '0')}a.JPG" 
                  alt="${castle.name}" 
                  onerror="if(this.src.includes('JPG')){this.src='data/IMG_'+${castle.no}+'.jpg';}else{this.src='https://via.placeholder.com/300x200/667eea/ffffff?text=${encodeURIComponent(castle.name)}';}">
             <figcaption>
