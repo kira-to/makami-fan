@@ -1,0 +1,9 @@
+{
+  "updated": "2025-07-30",
+  "progress": { "visited": 15, "total": 100, "ratio": 0.15 },
+  "latest": [
+    {"no": 99, "name": "中城城", "pref": "沖縄", "date": "2025-07-30", "photo": "data/IMG_99a.JPG"},
+    {"no": 100, "name": "首里城", "pref": "沖縄", "date": "2025-07-30", "photo": "data/IMG_99b.JPG"}
+  ],
+  "source": "https://kira-to.github.io/makami-fan/"
+}
