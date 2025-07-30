@@ -12,7 +12,7 @@ const castle2Pref = {
   16:"10", 17:"10", // 群馬
   26:"20", 27:"20", 28:"20", // 長野
   18:"11", // 埼玉
-  98:"47" // 沖縄
+  98:"47", 99:"47", 100:"47" // 沖縄
 };
 let castlesData = [];
 
@@ -59,20 +59,21 @@ function initializePage() {
 
 // 進捗バー更新
 function updateProgressBar() {
-    const visitedCastles = castlesData.filter(castle => castle.visited);
-    const totalCastles = TOTAL_CASTLES;
-    const visitedCount = visitedCastles.length;
-    const percentage = (visitedCount / totalCastles) * 100;
-    
+    const total = TOTAL_CASTLES;
+    const visitedAuto = castlesData.filter(c=>c.visited).length;
+    const progressOverride = 15; // ← 表示だけ15件に固定。不要になったら削除。
+    const v = (typeof progressOverride === 'number') ? progressOverride : visitedAuto;
+    const percentage = (v / total) * 100;
+
     const barInner = document.getElementById('bar-inner');
     const ratio = document.getElementById('ratio');
-    
+
     if (barInner) {
         barInner.style.width = `${percentage}%`;
     }
-    
+
     if (ratio) {
-        ratio.textContent = `${visitedCount} / ${totalCastles} 名城制覇 (${percentage.toFixed(0)}%)`;
+        ratio.textContent = `${v} / ${total} 名城制覇`;
     }
 }
 
@@ -127,7 +128,7 @@ function generateGallery() {
     visitedCastles.forEach(castle => {
         const figure = document.createElement('figure');
         figure.innerHTML = `
-            <img src="data/IMG_${castle.no.toString().padStart(2, '0')}a.JPG" 
+            <img src="${castle.photo ? castle.photo : `data/IMG_${castle.no.toString().padStart(2, '0')}a.JPG`}" 
                  alt="${castle.name}" 
                  onerror="if(this.src.includes('JPG')){this.src='data/IMG_'+${castle.no}+'.jpg';}else{this.src='https://via.placeholder.com/300x200/667eea/ffffff?text=${encodeURIComponent(castle.name)}';}">
             <figcaption>
