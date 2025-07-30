@@ -127,10 +127,9 @@ function generateGallery() {
     
     visitedCastles.forEach(castle => {
         const figure = document.createElement('figure');
+        const imgSrc = castle.photo ? castle.photo : `data/IMG_${castle.no}.JPG`;
         figure.innerHTML = `
-            <img src="${castle.photo ? castle.photo : `data/IMG_${castle.no.toString().padStart(2, '0')}a.JPG`}" 
-                 alt="${castle.name}" 
-                 onerror="if(this.src.includes('JPG')){this.src='data/IMG_'+${castle.no}+'.jpg';}else{this.src='https://via.placeholder.com/300x200/667eea/ffffff?text=${encodeURIComponent(castle.name)}';}">
+            <img src="${imgSrc}" alt="${castle.name}" onerror="this.onerror=null;this.src='data/IMG_${castle.no}a.JPG';">
             <figcaption>
                 <strong>${castle.name}</strong><br>
                 No.${castle.no} (${displayPref(castle.pref)})<br>
