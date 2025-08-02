@@ -12,6 +12,10 @@ const castle2Pref = {
   16:"10", 17:"10", // 群馬
   26:"20", 27:"20", 28:"20", // 長野
   18:"11", // 埼玉
+  // === 2025-08-02 追加 ===
+  15:"9",  // 栃木
+  19:"11", // 埼玉
+  22:"13", // 東京
   // === 2025-07-31 追加 ===
   24:"19", 25:"19", // 山梨
   29:"20", 30:"20", // 長野
@@ -64,7 +68,7 @@ function initializePage() {
 function updateProgressBar() {
     const total = TOTAL_CASTLES;
     const visitedAuto = castlesData.filter(c=>c.visited).length;
-    const progressOverride = 19; // ← 表示だけ15件に固定。不要になったら削除。
+    const progressOverride = 22; // ← 表示だけ15件に固定。不要になったら削除。
     const v = (typeof progressOverride === 'number') ? progressOverride : visitedAuto;
     const percentage = (v / total) * 100;
 
