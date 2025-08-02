@@ -58,31 +58,59 @@ async function loadCastlesData() {
 
 // ページ初期化
 function initializePage() {
-    updateProgressBar();
+    renderWallProgress();
     generateTimeline();
     highlightMapMarkers();
     generateGallery();
 }
 
 // 進捗バー更新
-function updateProgressBar() {
+function renderWallProgress() {
     const total = TOTAL_CASTLES;
-    const visitedAuto = castlesData.filter(c=>c.visited).length;
-    const progressOverride = 22; // ← 表示だけ15件に固定。不要になったら削除。
-    const v = (typeof progressOverride === 'number') ? progressOverride : visitedAuto;
-    const percentage = (v / total) * 100;
+    const visited = castlesData.filter(c => c.visited).length;
 
-    const barInner = document.getElementById('bar-inner');
-    const ratio = document.getElementById('ratio');
+    const wallGrid = document.getElementById('wall-grid');
+    if (!wallGrid) return;
 
-    if (barInner) {
-        barInner.style.width = `${percentage}%`;
+    // グリッドを生成・再描画
+    wallGrid.innerHTML = '';
+    for (let i = 0; i < total; i++) {
+        const block = document.createElement('div');
+        const visitedFlag = i < visited;
+        block.className = 'wall-block' + (visitedFlag ? ' filled' : '');
+
+        if (visitedFlag) {
+            const em = document.createElement('span');
+            em.className = 'emoji';
+            em.textContent = '🔥';
+            block.appendChild(em);
+        } else {
+            const num = document.createElement('span');
+            num.className = 'num';
+            num.textContent = total - i; // 残数カウントダウン
+            block.appendChild(num);
+        }
+        wallGrid.appendChild(block);
     }
 
-    if (ratio) {
-        ratio.textContent = `${v} / ${total} 名城制覇`;
+    // 数値情報を更新
+    const info = document.getElementById('wall-info');
+    const percent = Math.round((visited / total) * 100);
+    if (info) info.textContent = `${visited} / ${total}（${percent}%）`;
+
+    // 100達成で天守を表示
+    if (visited === total) {
+        const wp = document.getElementById('wall-progress');
+        if (wp && !document.getElementById('castle-finish')) {
+            const castle = document.createElement('div');
+            castle.id = 'castle-finish';
+            castle.textContent = '🏯 完成！';
+            wp.appendChild(castle);
+            wp.classList.add('complete');
+        }
     }
 }
+
 
 // タイムライン生成（新しい順）
 function generateTimeline() {
