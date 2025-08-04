@@ -109,20 +109,38 @@
     </header>
 
     <!-- ヒーローセクション -->
-    <section id="hero">
-        <h1>マカミは日本最大級のゆるキャラ祭典<br>
-            『ゆるバース2025』に出場決定！</h1>
-        <p class="lead">
-            100名城制覇に挑戦するマカミと一緒に<br>
-            グランプリを目指しましょう🎉
+    <section id="hero" class="hero-flex">
+      <div class="hero-text">
+        <h1>ゆるバース2025 投票カウントダウン</h1>
+
+        <!-- カウントダウン -->
+        <p class="countdown">
+          決戦投票まで <span id="days-left">--</span> 日
         </p>
-        <p class="info">
-            投票開始：<strong>2025年8月1日（金）0:00 JST</strong><br>
-            お1人さま1日1票投票できます🗳️
+
+        <!-- 順位バッジ -->
+        <p class="rank-badge">
+          <span class="date">8/4 現在</span>　
+          <span class="rank">マカミ <strong>5 位</strong></span>
         </p>
-        <a class="cta" href="https://www.yurugp.jp/characters/4333" target="_blank" rel="noopener" onclick="gtag('event', 'click_vote_cta', {link_url: this.href, location: 'hero'});">投票会場「ゆるナビ」で投票する</a>
-        <p id="vote-countdown"></p>
+
+        <p class="hero-desc">
+          100名城制覇に挑戦するマカミと一緒に、<br>
+          グランプリまで駆け抜けましょう！🎉
+        </p>
+
+        <a class="cta" href="https://www.yurugp.jp/characters/4333" target="_blank" rel="noopener">
+          投票会場「ゆるナビ」で投票する
+        </a>
+      </div>
+
+      <!-- マカミ画像 -->
+      <div class="hero-img">
+        <img src="data/IMG_kigurumi.WEBP" alt="マカミ着ぐるみ" loading="lazy" decoding="async">
+      </div>
     </section>
+
+    <script src="assets/js/countdown.js" defer></script>
 
     <main>
         <!-- TL;DR -->

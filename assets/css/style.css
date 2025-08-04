@@ -423,6 +423,33 @@ ruby rt {
 @keyframes flame-blink{from{opacity:.3;}to{opacity:.9;}}
 @media (prefers-reduced-motion:reduce){#bar-inner{animation:none;}#bar-flame{animation:none;}}
 
+/* ---------- HERO FLEX ---------- */
+.hero-flex{
+  display:flex;flex-wrap:wrap;align-items:center;
+  gap:2rem;background:#fff3e0;border-radius:12px;padding:1.5rem 2rem;
+  box-shadow:0 4px 12px rgba(0,0,0,.08);margin-bottom:2rem;
+}
+.hero-text{flex:1 1 320px;min-width:280px}
+.hero-text h1{font-size:1.6rem;color:#e63946;margin:0 0 .5rem}
+.countdown{
+  font-size:1.4rem;font-weight:700;margin:.2rem 0;color:#1d3557;
+}
+#days-left{font-size:2rem;color:#d62828}
+.rank-badge{
+  display:inline-block;margin:.5rem 0;padding:.3rem .8rem;
+  background:#f77f00;color:#fff;border-radius:6px;font-weight:700;
+}
+.rank-badge .date{font-size:.9rem;opacity:.8}
+.rank-badge .rank strong{font-size:1.4rem;}
+.hero-desc{margin:1rem 0;font-size:1rem;line-height:1.6;color:#333}
+.cta{display:inline-block;margin-top:.5rem;padding:.8rem 1.4rem;font-weight:700;
+  color:#fff;background:#e63946;border-radius:6px;text-decoration:none}
+.cta:hover{background:#d62828}
+.hero-img{flex:0 0 260px;text-align:center}
+.hero-img img{max-width:260px;width:100%;height:auto}
+/* モバイル調整 */
+@media(max-width:500px){.hero-img{order:-1;margin-bottom:1rem}}
+
 /* レスポンシブ対応 */
 @media (max-width: 768px) {
     header h1 {
