@@ -450,6 +450,13 @@ ruby rt {
 /* モバイル調整 */
 @media(max-width:500px){.hero-img{order:-1;margin-bottom:1rem}}
 
+/* 下向きアイコン点滅 */
+.down-icon{
+  display:inline-block;animation:blink 1s ease-in-out infinite;
+  font-size: 2rem;
+}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.2;}}
+
 /* レスポンシブ対応 */
 @media (max-width: 768px) {
     header h1 {
