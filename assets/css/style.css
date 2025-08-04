@@ -402,6 +402,12 @@ footer a:hover {
   .wall-block .emoji{font-size:2rem;}
 }
 
+/* 2025-08-04 モバイル進捗幅縮小 */
+@media (max-width:480px){
+  #wall-progress{transform:scale(.9); transform-origin:top center;}
+}
+
+
 /* ==== 熱血進捗バー (v2) ==== */
 #progress-wrap{max-width:680px;margin:2rem auto;text-align:center;font-weight:700;}
 #progress-info{margin-bottom:.4rem;color:#e63946;font-size:1.1rem;}
