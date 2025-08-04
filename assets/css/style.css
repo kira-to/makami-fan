@@ -343,6 +343,11 @@ footer a:hover {
 #map svg path { fill:#f3f3f3; stroke:#bbb; stroke-width:.5; transition:fill .3s; }
 #map svg path.visited, #map svg .prefecture.visited path { fill:#e63946; }
 
+/* ふりがな（ruby） */
+ruby rt {
+    font-size: 0.65em;
+}
+
 /* タイムラインスクロールボックス */
 .timeline-scrollbox{
     max-height: 300px;

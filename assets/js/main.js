@@ -129,7 +129,7 @@ function generateTimeline() {
         const li = document.createElement('li');
         li.innerHTML = `
             <time>${formatDate(castle.date)}</time>
-            <strong>${castle.name}</strong> (${displayPref(castle.pref)})
+            <strong><ruby><rb>${castle.name}</rb><rt>${castle.yomi || ''}</rt></ruby></strong> (${displayPref(castle.pref)})
         `;
         timelineList.appendChild(li);
     });
