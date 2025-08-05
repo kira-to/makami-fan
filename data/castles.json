@@ -21,5 +21,9 @@
   { "no": 15, "name": "足利氏館", "yomi": "あしかがしやかた", "pref": "栃木", "visited": true, "date": "2025-08-02", "photo": "data/IMG_15a.JPG" },
   { "no": 19, "name": "川越城",   "yomi": "かわごえじょう", "pref": "埼玉", "visited": true, "date": "2025-08-02", "photo": "data/IMG_19a.JPG" },
   { "no": 22, "name": "八王子城", "yomi": "はちおうじじょう", "pref": "東京", "visited": true, "date": "2025-08-02", "photo": "data/IMG_22a.JPG" },
-  { "no": 40, "name": "山中城", "yomi": "やまなかじょう", "pref": "静岡", "visited": true, "date": "2025-08-04", "photo": "data/IMG_40a.JPG" }
+  { "no": 40, "name": "山中城", "yomi": "やまなかじょう", "pref": "静岡", "visited": true, "date": "2025-08-04", "photo": "data/IMG_40a.JPG" },
+  { "no": 31, "name": "新発田城", "yomi": "しばたじょう",   "pref": "新潟", "visited": true, "date": "2025-08-05", "photo": "data/IMG_31a.JPG" },
+  { "no": 32, "name": "春日山城", "yomi": "かすがやまじょう", "pref": "新潟", "visited": true, "date": "2025-08-05", "photo": "data/IMG_32a.JPG" },
+  { "no": 33, "name": "高岡城",   "yomi": "たかおかじょう",   "pref": "富山", "visited": true, "date": "2025-08-05", "photo": "data/IMG_33a.JPG" },
+  { "no": 34, "name": "七尾城",   "yomi": "ななおじょう",     "pref": "石川", "visited": true, "date": "2025-08-05", "photo": "data/IMG_34a.JPG" }
 ]
