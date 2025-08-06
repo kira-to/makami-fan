@@ -3,7 +3,7 @@
   "progress": { "visited": 30, "total": 100, "ratio": 0.30 },
   "latest": [
     {"no": 35, "name": "金沢城",   "pref": "石川", "date": "2025-08-06", "photo": "data/IMG_35a.JPG"},
-    {"no": 36, "name": "丸岡城",   "pref": "福井", "date": "2025-08-06", "photo": "data/IMG_36.JPG"},
+    {"no": 36, "name": "丸岡城",   "pref": "福井", "date": "2025-08-06", "photo": "data/IMG_36.png"},
     {"no": 37, "name": "一乗谷城", "pref": "福井", "date": "2025-08-06", "photo": "data/IMG_37a.JPG"}
   ],
   "source": "https://kira-to.github.io/makami-fan/"
