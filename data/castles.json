@@ -28,5 +28,9 @@
   { "no": 34, "name": "七尾城",   "yomi": "ななおじょう",     "pref": "石川", "visited": true, "date": "2025-08-05", "photo": "data/IMG_34a.JPG" },
   { "no": 35, "name": "金沢城",   "yomi": "かなざわじょう",     "pref": "石川", "visited": true, "date": "2025-08-06", "photo": "data/IMG_35a.JPG" },
   { "no": 36, "name": "丸岡城",   "yomi": "まるおかじょう",     "pref": "福井", "visited": true, "date": "2025-08-06", "photo": "data/IMG_36.png"  },
-  { "no": 37, "name": "一乗谷城", "yomi": "いちじょうだにじょう", "pref": "福井", "visited": true, "date": "2025-08-06", "photo": "data/IMG_37a.JPG" }
+  { "no": 37, "name": "一乗谷城", "yomi": "いちじょうだにじょう", "pref": "福井", "visited": true, "date": "2025-08-06", "photo": "data/IMG_37a.JPG" },
+  { "no": 49, "name": "小谷城",   "yomi": "おだにじょう",      "pref": "滋賀", "visited": true, "date": "2025-08-07", "photo": "data/IMG_49a.JPG" },
+  { "no": 50, "name": "彦根城",   "yomi": "ひこねじょう",      "pref": "滋賀", "visited": true, "date": "2025-08-07", "photo": "data/IMG_50a.JPG" },
+  { "no": 51, "name": "安土城",   "yomi": "あづちじょう",      "pref": "滋賀", "visited": true, "date": "2025-08-07", "photo": "data/IMG_51a.JPG" },
+  { "no": 52, "name": "観音寺城", "yomi": "かんのんじじょう",  "pref": "滋賀", "visited": true, "date": "2025-08-07", "photo": "data/IMG_52a.JPG" }
 ]
