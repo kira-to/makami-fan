@@ -21,8 +21,10 @@
 
     <meta name="twitter:card"       content="summary_large_image">
     <!-- === /OGP === -->
+    <!-- Favicon (data URI to avoid 404 for /favicon.ico) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23764ba2'/%3E%3Ctext x='50%25' y='58%25' text-anchor='middle' font-size='44' font-family='Segoe UI Emoji,Noto Color Emoji' dy='.1em'%3E🐺%3C/text%3E%3C/svg%3E">
 
-    <link rel="stylesheet" href="assets/css/style.css?v=20250801">
+    <link rel="stylesheet" href="assets/css/style.css?v=20250808">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XJ8JMFNRFE"></script>
     <script>
@@ -75,12 +77,12 @@
        {
         "@type":"Question",
         "name":"いまの登城進捗は？",
-        "acceptedAnswer":{"@type":"Answer","text":"34/100（2025-08-07 更新）。"}
+        "acceptedAnswer":{"@type":"Answer","text":"37/100（2025-08-08 更新）。"}
        },
        {
         "@type":"Question",
         "name":"最新の訪問先は？",
-        "acceptedAnswer":{"@type":"Answer","text":"小谷城（No.49）、彦根城（No.50）、安土城（No.51）、観音寺城（No.52）。"}
+        "acceptedAnswer":{"@type":"Answer","text":"伊賀上野城（No.47）、千早城（No.55）、高取城（No.61）。"}
        }
      ]
     }
@@ -94,7 +96,7 @@
      "license":"https://creativecommons.org/licenses/by/4.0/",
      "url":"https://kira-to.github.io/makami-fan/data/summary.json",
      "creator":{"@type":"Organization","name":"Makami Fan Site"},
-     "dateModified":"2025-08-07"
+     "dateModified":"2025-08-08"
     }
     </script>
 </head>
@@ -134,8 +136,8 @@
 
         <!-- 順位バッジ -->
         <p class="rank-badge">
-          <span class="date">8/7 現在</span>　
-          <span class="rank">マカミ <strong>6 位</strong></span>
+          <span class="date">8/8 現在</span>　
+          <span class="rank">マカミ <strong>8 位</strong></span>
         </p>
 
         <p class="hero-desc">
@@ -160,19 +162,19 @@
     <main>
         <!-- TL;DR -->
         <section id="tldr" class="callout">
-          <h2>要点まとめ（最終更新：2025-08-07）</h2>
-          <img class="tldr-thumb" src="data/IMG_49a.JPG" alt="小谷城（滋賀）" width="1200" height="800" loading="lazy" decoding="async">
+          <h2>要点まとめ（最終更新：2025-08-08）</h2>
+          <img class="tldr-thumb" src="data/IMG_47a.JPG" alt="伊賀上野城（三重）" width="1200" height="800" loading="lazy" decoding="async">
           <ul>
-            <li>日本100名城進捗：<strong>34/100</strong></li>
-            <li>最新登城：小谷城・彦根城・安土城・観音寺城</li>
+            <li>日本100名城進捗：<strong>37/100</strong></li>
+            <li>最新登城：伊賀上野城・千早城・高取城</li>
             <li>投票：『ゆるバース2025』受付中（下のボタンから）</li>
 <li>FAQ更新：「熱血キャラバンって何？」を追加</li>
           </ul>
-          <p lang="en">Makami’s “100 Japanese Castles” challenge: <strong>34/100</strong> completed as of 2025-08-07.</p>
+          <p lang="en">Makami’s “100 Japanese Castles” challenge: <strong>37/100</strong> completed as of 2025-08-08.</p>
         </section>
         <!-- 3-1. 総合進捗バー -->
         <section id="wall-progress" aria-label="日本100名城チャレンジ進捗">
-            <h2>100名城チャレンジ進捗 <span id="wall-info">34 / 100（34%）</span></h2>
+            <h2>100名城チャレンジ進捗 <span id="wall-info">37 / 100（37%）</span></h2>
             <div id="wall-grid"></div>
         </section>
 
@@ -188,6 +190,15 @@
         <!-- 3-3. インタラクティブ日本地図 -->
         <section id="map">
             <h2>訪問マップ</h2>
+            <!-- ▼ マカミ案内吹き出し -->
+            <div id="map-hint" aria-label="クリック案内">
+              <img src="data/Makami-01.avif" alt="マカミ" width="40" height="40" loading="lazy" decoding="async">
+              <div class="bubble">
+                地図をポチッ！<br>
+                行ったお城がズラッと出るよ🐺🏯
+                <button id="hint-close" aria-label="閉じる">×</button>
+              </div>
+            </div>
             <!-- ↓ japan-map.svg のソースを丸ごと貼り付け -->
             <!-- 例: <svg id="japan" viewBox="0 0 600 750"> … </svg> -->
         </section>
@@ -207,9 +218,9 @@
   進捗は「城壁カウントダウン」とタイムラインで更新、投票は「ゆるナビ」から行えます。
 </p>
 <h3>Q. いまの登城進捗は？</h3>
-<p>A. <strong>34/100</strong> です（2025-08-07 更新）。</p>
+<p>A. <strong>37/100</strong> です（2025-08-08 更新）。</p>
 <h3>Q. 最新の訪問先は？</h3>
-<p>A. 滋賀の <strong>小谷城（No.49）</strong>・<strong>彦根城（No.50）</strong>・<strong>安土城（No.51）</strong>・<strong>観音寺城（No.52）</strong> です。</p>
+<p>A. 三重の <strong>伊賀上野城（No.47）</strong>・大阪の <strong>千早城（No.55）</strong>・奈良の <strong>高取城（No.61）</strong> です。</p>
         </section>
     </main>
 
@@ -218,6 +229,6 @@
         <p><a href="policy.html">免責事項・プライバシーポリシー</a></p>
     </footer>
 
-    <script src="assets/js/main.js?v=20250801"></script>
+    <script src="assets/js/main.js?v=20250808"></script>
 </body>
 </html>

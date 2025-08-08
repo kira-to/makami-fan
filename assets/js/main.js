@@ -30,7 +30,11 @@ const castle2Pref = {
   35:"17", // 石川
   36:"18", 37:"18", // 福井
   // === 2025-08-07 追加 ===
-  49:"25", 50:"25", 51:"25", 52:"25" // 滋賀
+  49:"25", 50:"25", 51:"25", 52:"25", // 滋賀
+  // === 2025-08-08 追加 ===
+  47:"JP-24",   // 三重
+  55:"JP-27",   // 大阪
+  61:"JP-29"    // 奈良
 };
 let castlesData = [];
 
@@ -39,6 +43,75 @@ function displayPref(pref){
   if(!pref) return '';
   const last = pref.slice(-1);
   return (last==='都' || last==='道' || last==='府') ? pref : `${pref}県`;
+}
+
+// 地図クリックで都道府県名と訪問城を表示
+function bindMapClicks(){
+    const svgRoot = document.querySelector('#map svg');
+    if(!svgRoot) return;
+    if(svgRoot.__boundClicks) return; // 二重バインド防止
+    svgRoot.__boundClicks = true;
+
+    const resolvePrefFromElement = (el)=>{
+        if(!el) return {};
+        // 最近傍の候補要素
+        const t = el.closest('[data-code], [data-jis-code], [data-jis], .prefecture, [id]');
+        if(!t) return {};
+        // コード候補を取得
+        let code = t.getAttribute('data-code') || t.getAttribute('data-jis-code') || t.getAttribute('data-jis') || t.id || '';
+        if(!code) return {};
+        // 数値化
+        let num = String(code).replace(/^(JP-|pref-)/,'');
+        num = num.replace(/^(..).*$/, '$1');
+        num = num.padStart(2,'0').slice(0,2);
+        const jp = `JP-${num}`;
+        // 名称候補
+        const name = t.getAttribute('data-name') || (t.querySelector('title')?.textContent) || '';
+        return { num, jp, name };
+    };
+
+    svgRoot.addEventListener('click', (e)=>{
+        const { num, jp, name } = resolvePrefFromElement(e.target);
+        if(!num) return;
+
+        // 対象都道府県の訪問城を抽出
+        const visitedList = castlesData.filter(c=> c.visited && (String(castle2Pref[c.no]).replace(/^JP-/,'').padStart(2,'0')===num));
+
+        const title = name || jp;
+        const listHtml = visitedList.length
+            ? `<ul style="margin:8px 0 0 18px;">${visitedList.map(c=>`<li>No.${c.no} ${c.name} <small>${formatDate(c.date)}</small></li>`).join('')}</ul>`
+            : `<p style="margin:8px 0 0; color:#666;">この都道府県の訪問記録はありません</p>`;
+
+        openInfoModal(title, listHtml);
+    });
+}
+
+// テキスト用モーダル
+function openInfoModal(title, html){
+    const modal = document.createElement('div');
+    modal.style.cssText = `
+        position: fixed; inset: 0; background: rgba(0,0,0,.5);
+        display:flex; align-items:center; justify-content:center; z-index:1000;
+    `;
+    const box = document.createElement('div');
+    box.style.cssText = `
+        background:#fff; color:#333; border-radius:12px; max-width:520px; width:90%;
+        box-shadow:0 10px 30px rgba(0,0,0,.25); padding:18px 20px; font-size:14px; line-height:1.6;
+    `;
+    box.innerHTML = `
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:8px;">
+            <h3 style="margin:0; font-size:18px;">${title}</h3>
+            <button id="modalCloseBtn" style="border:none; background:#eee; padding:6px 10px; border-radius:8px; cursor:pointer;">閉じる</button>
+        </div>
+        <div style="margin-top:10px;">${html}</div>
+    `;
+    modal.appendChild(box);
+    document.body.appendChild(modal);
+    const close = ()=>{ if(modal.parentNode) modal.parentNode.removeChild(modal); };
+    modal.addEventListener('click', (e)=>{ if(e.target===modal) close(); });
+    box.querySelector('#modalCloseBtn').addEventListener('click', close);
+    const onEsc=(e)=>{ if(e.key==='Escape'){ close(); document.removeEventListener('keydown', onEsc);} };
+    document.addEventListener('keydown', onEsc);
 }
 
 // DOM読み込み完了後に初期化
@@ -72,6 +145,7 @@ function initializePage() {
     renderWallProgress();
     generateTimeline();
     highlightMapMarkers();
+    bindMapClicks();
     generateGallery();
 }
 
@@ -150,14 +224,69 @@ function generateTimeline() {
 
 // 地図マーカーハイライト
 function highlightMapMarkers() {
-    // SVG がまだ挿入されていなければ後で再試行
-    if(!document.querySelector('#map svg')) return;
+    const svgRoot = document.querySelector('#map svg');
+    if(!svgRoot) return;
 
-    // 都道府県パスをハイライト
+    const markVisited = (el) => {
+        if(!el) return;
+        el.classList.add('visited');
+        el.querySelectorAll('path').forEach(p=>p.classList.add('visited'));
+    };
+
+    // 都道府県パスをハイライト（複数の属性スキーマに対応）
     castlesData.filter(c=>c.visited).forEach(castle => {
         const prefCode = castle2Pref[castle.no];
-        if(prefCode){
-            document.querySelector(`[data-code='${prefCode}']`)?.classList.add('visited');
+        if(!prefCode) return;
+
+        const num = String(prefCode).replace(/^JP-/,'').padStart(2,'0');
+        const numNoPad = String(parseInt(num,10));
+        const jp  = `JP-${num}`;
+        const prefName = castle.pref || '';
+
+        const candidates = [
+            `[data-code='${jp}']`,
+            `[data-code='${num}']`,
+            `[data-code='JP-${numNoPad}']`,
+            `[data-code='${numNoPad}']`,
+            `[data-jis-code='${num}']`,
+            `[data-jis='${num}']`,
+            `[data-jis-code='${numNoPad}']`,
+            `[data-jis='${numNoPad}']`,
+            `#pref-${num}`,
+            `#pref-${numNoPad}`,
+            `#${jp}`,
+            `[data-name='${prefName}']`
+        ];
+
+        let targets = [];
+        const safeQuery = (sel)=>{ try { return svgRoot.querySelector(sel); } catch(_) { return null; } };
+        const safeQueryAll = (sel)=>{ try { return Array.from(svgRoot.querySelectorAll(sel)); } catch(_) { return []; } };
+        for (const sel of candidates) {
+            const tAll = safeQueryAll(sel);
+            if (tAll.length) targets.push(...tAll);
+        }
+        // .prefecture グループ内の title でも照合（北海道など分割形状対策）
+        if (targets.length === 0 && prefName) {
+            const groups = Array.from(svgRoot.querySelectorAll('.prefecture'));
+            groups.forEach(g=>{
+                const title = g.querySelector('title')?.textContent?.trim();
+                if (title === prefName || title === jp || title === num) {
+                    targets.push(g);
+                }
+            });
+        }
+        // さらに title 直指定（グループclassが無い場合）
+        if (targets.length === 0 && prefName) {
+            const titled = Array.from(svgRoot.querySelectorAll('title'))
+                .filter(t=> (t.textContent||'').trim() === prefName)
+                .map(t=> t.parentElement);
+            if (titled.length) targets.push(...titled);
+        }
+        // 重複除去
+        targets = Array.from(new Set(targets.filter(Boolean)));
+        // 見つかった全対象に反映（島が分割されている県対策）
+        if (targets.length) {
+            targets.forEach(el=> markVisited(el));
         }
     });
 }
@@ -281,6 +410,15 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             });
         }
     });
+});
+
+// マカミ案内 吹き出し（×）で閉じる
+document.addEventListener('click', (e) => {
+  const t = e.target;
+  if (t && t.id === 'hint-close') {
+    const hint = document.getElementById('map-hint');
+    if (hint) hint.style.display = 'none';
+  }
 });
 
 // ページ読み込み時のアニメーション

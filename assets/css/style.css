@@ -1,3 +1,56 @@
+/* ---- Map Hint ---- */
+#map{ position:relative; }
+#map-hint{
+  position:absolute; /* 地図の親を relative にしてあればOK */
+  top:8px; right:8px; z-index:120; /* 地図より前面に */
+  display:flex; align-items:center; gap:20px;
+}
+#map-hint img{
+  width:52px; height:auto; filter:drop-shadow(0 2px 4px rgba(0,0,0,.3));
+}
+#map-hint .bubble{
+  position:relative;
+  --bubble-bg:#fff7cc; --bubble-border:#e1b100; /* 調整しやすいよう変数化 */
+  background:var(--bubble-bg); border:2px solid var(--bubble-border); border-radius:12px; padding:.6rem .9rem; font-size:.85rem;
+  box-shadow:0 3px 10px rgba(0,0,0,.12); line-height:1.4; max-width:180px; color:#333;
+  overflow:visible;
+}
+/* 枠付き三角（外側の枠） */
+#map-hint .bubble::before{
+  content:""; position:absolute; left:-26px; top:50%; transform:translateY(-50%);
+  border:12px solid transparent; border-right-color:var(--bubble-border);
+}
+/* 三角吹き出し（内側=吹き出し色） */
+#map-hint .bubble::after{ /* 三角吹き出し（内側=吹き出し色） */
+  content:""; position:absolute; left:-24px; top:50%; transform:translateY(-50%);
+  border:11px solid transparent; border-right-color:var(--bubble-bg);
+}
+#hint-close{
+  position:absolute; top:2px; right:4px; border:none; background:none;
+  font-weight:700; font-size:.9rem; cursor:pointer; color:#999;
+}
+#hint-close:hover{color:#333;}
+@media(max-width:500px){
+  #map-hint{transform:scale(.85); transform-origin:top right;}
+}
+
+/* ---- Makami wiggle animation ---- */
+@keyframes makami-wiggle{
+  0%,100%{transform:rotate(0deg) translateY(0);} 
+  20%    {transform:rotate(5deg) translateY(-2px);} 
+  40%    {transform:rotate(-4deg) translateY(1px);} 
+  60%    {transform:rotate(3deg) translateY(-1px);} 
+  80%    {transform:rotate(-2deg) translateY(0);} 
+}
+#map-hint img{
+  width:52px;height:auto;
+  filter:drop-shadow(0 2px 4px rgba(0,0,0,.3));
+  animation:makami-wiggle 3s ease-in-out infinite;
+  transform-origin:50% 80%; /* 足元を軸に揺らす */
+}
+@media (prefers-reduced-motion:reduce){
+  #map-hint img{animation:none;}
+}
 /* リセット・基本設定 */
 * {
     margin: 0;

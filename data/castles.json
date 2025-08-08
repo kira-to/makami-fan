@@ -11,7 +11,7 @@
   { "no": 16, "name": "箕輪城", "yomi": "みのわじょう", "pref": "群馬", "visited": true, "date": "2025-07-26" },
   { "no": 17, "name": "金山城", "yomi": "かなやまじょう", "pref": "群馬", "visited": true, "date": "2025-07-26" },
   { "no": 18, "name": "鉢形城", "yomi": "はちがたじょう", "pref": "埼玉", "visited": true, "date": "2025-07-26" },
-  { "no": 98, "name": "今帰仁城", "yomi": "なきじんじょう", "pref": "沖縄", "visited": true, "date": "2025-07-29" },
+  { "no": 98, "name": "今帰仁城", "yomi": "なきじんじょう", "pref": "沖縄", "visited": true, "date": "2025-07-29", "photo": "data/IMG_98a.JPG" },
   { "no": 99,  "name": "中城城", "yomi": "なかぐすくじょう", "pref": "沖縄", "visited": true, "date": "2025-07-30", "photo": "data/IMG_99a.JPG" },
   { "no": 100, "name": "首里城", "yomi": "しゅりじょう", "pref": "沖縄", "visited": true, "date": "2025-07-30", "photo": "data/IMG_100b.JPG" },
   { "no": 29, "name": "松本城",   "yomi": "まつもとじょう", "pref": "長野", "visited": true, "date": "2025-08-01", "photo": "data/IMG_29a.JPG" },
@@ -32,5 +32,8 @@
   { "no": 49, "name": "小谷城",   "yomi": "おだにじょう",      "pref": "滋賀", "visited": true, "date": "2025-08-07", "photo": "data/IMG_49a.JPG" },
   { "no": 50, "name": "彦根城",   "yomi": "ひこねじょう",      "pref": "滋賀", "visited": true, "date": "2025-08-07", "photo": "data/IMG_50a.JPG" },
   { "no": 51, "name": "安土城",   "yomi": "あづちじょう",      "pref": "滋賀", "visited": true, "date": "2025-08-07", "photo": "data/IMG_51a.JPG" },
-  { "no": 52, "name": "観音寺城", "yomi": "かんのんじじょう",  "pref": "滋賀", "visited": true, "date": "2025-08-07", "photo": "data/IMG_52a.JPG" }
+  { "no": 52, "name": "観音寺城", "yomi": "かんのんじじょう",  "pref": "滋賀", "visited": true, "date": "2025-08-07", "photo": "data/IMG_52a.JPG" },
+  { "no": 47, "name": "伊賀上野城", "yomi": "いがうえのじょう", "pref": "三重", "visited": true, "date": "2025-08-08", "photo": "data/IMG_47a.JPG" },
+  { "no": 55, "name": "千早城",     "yomi": "ちはやじょう",     "pref": "大阪", "visited": true, "date": "2025-08-08", "photo": "data/IMG_55a.JPG" },
+  { "no": 61, "name": "高取城",     "yomi": "たかとりじょう",   "pref": "奈良", "visited": true, "date": "2025-08-08", "photo": "data/IMG_61a.JPG" }
 ]
