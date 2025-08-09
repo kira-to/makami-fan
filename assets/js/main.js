@@ -47,6 +47,28 @@ function displayPref(pref){
   return (last==='都' || last==='道' || last==='府') ? pref : `${pref}県`;
 }
 
+/* ユーティリティ：県名の表記ゆれを吸収（～都/道/府/県 を削除） */
+function normalizePref(name){
+  if(!name) return '';
+  return String(name).trim().replace(/(都|道|府|県)$/,'');
+}
+
+/* 都道府県カバー率を更新（ユニーク訪問都道府県数 X/47, Y%） */
+function updatePrefCoverage(castles){
+  const TOTAL = 47;
+  const set = new Set();
+  (castles||[]).filter(c => c.visited && c.pref).forEach(c => set.add(normalizePref(c.pref)));
+  const visited = set.size;
+  const rate = Math.round((visited / TOTAL) * 100);
+
+  const v = document.getElementById('pref-visited');
+  const r = document.getElementById('pref-rate');
+  const b = document.getElementById('pref-bar');
+  if(v) v.textContent = visited;
+  if(r) r.textContent = `(${rate}%)`;
+  if(b) b.style.width = `${rate}%`;
+}
+
 // 地図クリックで都道府県名と訪問城を表示
 function bindMapClicks(){
     const svgRoot = document.querySelector('#map svg');
@@ -149,6 +171,7 @@ function initializePage() {
     highlightMapMarkers();
     bindMapClicks();
     generateGallery();
+    updatePrefCoverage(castlesData);
 }
 
 // 進捗バー更新

@@ -192,6 +192,14 @@
         <!-- 3-3. インタラクティブ日本地図 -->
         <section id="map">
             <h2>訪問マップ</h2>
+            <div id="pref-meter" class="pref-meter" aria-label="都道府県カバー率">
+              <div class="pref-meter__label">都道府県カバー率</div>
+              <div class="pref-meter__stat">
+                <strong id="pref-visited">--</strong><span class="slash">/</span>47
+                <span id="pref-rate" class="rate">(--%)</span>
+              </div>
+              <div class="pref-meter__bar"><span id="pref-bar" style="width:0%"></span></div>
+            </div>
             <!-- ▼ マカミ案内吹き出し -->
             <div id="map-hint" aria-label="クリック案内">
               <img src="data/Makami-01.avif" alt="マカミ" width="40" height="40" loading="lazy" decoding="async">

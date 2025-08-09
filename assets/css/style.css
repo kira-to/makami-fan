@@ -326,6 +326,19 @@ footer a:hover {
 #map svg path { fill:#f3f3f3; stroke:#bbb; stroke-width:.5; transition:fill .3s; }
 #map svg path.visited, #map svg .prefecture.visited path { fill:#e63946; }
 
+/* --- Prefecture coverage meter --- */
+.pref-meter{display:grid;grid-template-columns:auto 1fr;gap:.4rem 1rem;
+  align-items:center;background:#f8f9fb;border:1px solid #e7ecf2;border-radius:10px;
+  padding:.6rem .9rem;margin:.6rem 0 1rem;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.pref-meter__label{font-size:.9rem;color:#445;opacity:.8}
+.pref-meter__stat{font-weight:700;color:#1d3557}
+.pref-meter__stat .slash{opacity:.5;margin:0 .1rem}
+.pref-meter__stat .rate{margin-left:.5rem;color:#0b7285}
+.pref-meter__bar{grid-column:1/-1;height:8px;background:#e9eef3;border-radius:999px;overflow:hidden}
+.pref-meter__bar #pref-bar{display:block;height:100%;background:linear-gradient(90deg,#ff6b6b,#f59f00);
+  width:0%;transition:width .6s ease;border-radius:999px}
+@media (max-width:480px){.pref-meter{transform:scale(.95);transform-origin:left top}}
+
 /* ===== Shared Header (サイト共通) ===== */
 .shared-header {
     position: sticky;
