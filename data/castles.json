@@ -35,5 +35,6 @@
   { "no": 52, "name": "観音寺城", "yomi": "かんのんじじょう",  "pref": "滋賀", "visited": true, "date": "2025-08-07", "photo": "data/IMG_52a.JPG" },
   { "no": 47, "name": "伊賀上野城", "yomi": "いがうえのじょう", "pref": "三重", "visited": true, "date": "2025-08-08", "photo": "data/IMG_47a.JPG" },
   { "no": 55, "name": "千早城",     "yomi": "ちはやじょう",     "pref": "大阪", "visited": true, "date": "2025-08-08", "photo": "data/IMG_55a.JPG" },
-  { "no": 61, "name": "高取城",     "yomi": "たかとりじょう",   "pref": "奈良", "visited": true, "date": "2025-08-08", "photo": "data/IMG_61a.JPG" }
+  { "no": 61, "name": "高取城",     "yomi": "たかとりじょう",   "pref": "奈良", "visited": true, "date": "2025-08-08", "photo": "data/IMG_61a.JPG" },
+  { "no": 62, "name": "和歌山城", "yomi": "わかやまじょう", "pref": "和歌山", "visited": true, "date": "2025-08-09", "photo": "data/IMG_62a.JPG" }
 ]

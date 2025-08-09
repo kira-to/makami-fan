@@ -1,10 +1,8 @@
 {
-  "updated": "2025-08-08",
-  "progress": { "visited": 37, "total": 100, "ratio": 0.37 },
+  "updated": "2025-08-09",
+  "progress": { "visited": 38, "total": 100, "ratio": 0.38 },
   "latest": [
-    {"no":47,"name":"伊賀上野城","pref":"三重","date":"2025-08-08","photo":"data/IMG_47a.JPG"},
-    {"no":55,"name":"千早城","pref":"大阪","date":"2025-08-08","photo":"data/IMG_55a.JPG"},
-    {"no":61,"name":"高取城","pref":"奈良","date":"2025-08-08","photo":"data/IMG_61a.JPG"}
+    {"no": 62, "name": "和歌山城", "pref": "和歌山", "date": "2025-08-09", "photo": "data/IMG_62a.JPG"}
   ],
   "source": "https://kira-to.github.io/makami-fan/"
 }
