@@ -36,5 +36,11 @@
   { "no": 47, "name": "伊賀上野城", "yomi": "いがうえのじょう", "pref": "三重", "visited": true, "date": "2025-08-08", "photo": "data/IMG_47a.JPG" },
   { "no": 55, "name": "千早城",     "yomi": "ちはやじょう",     "pref": "大阪", "visited": true, "date": "2025-08-08", "photo": "data/IMG_55a.JPG" },
   { "no": 61, "name": "高取城",     "yomi": "たかとりじょう",   "pref": "奈良", "visited": true, "date": "2025-08-08", "photo": "data/IMG_61a.JPG" },
-  { "no": 62, "name": "和歌山城", "yomi": "わかやまじょう", "pref": "和歌山", "visited": true, "date": "2025-08-09", "photo": "data/IMG_62a.JPG" }
+  { "no": 62, "name": "和歌山城", "yomi": "わかやまじょう", "pref": "和歌山", "visited": true, "date": "2025-08-09", "photo": "data/IMG_62a.JPG" },
+  { "no": 58, "name": "明石城", "yomi": "あかしじょう", "pref": "兵庫",
+    "visited": true, "date": "2025-08-11", "photo": "data/IMG_58a.JPG" },
+  { "no": 59, "name": "姫路城", "yomi": "ひめじじょう", "pref": "兵庫",
+    "visited": true, "date": "2025-08-11", "photo": "data/IMG_59a.JPG" },
+  { "no": 60, "name": "赤穂城", "yomi": "あこうじょう", "pref": "兵庫",
+    "visited": true, "date": "2025-08-11", "photo": "data/IMG_60a.JPG" }
 ]
