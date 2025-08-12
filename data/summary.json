@@ -1,10 +1,13 @@
 {
-  "updated": "2025-08-11",
-  "progress": { "visited": 41, "total": 100, "ratio": 0.41 },
+  "updated": "2025-08-12",
+  "progress": { "visited": 47, "total": 100, "ratio": 0.47 },
   "latest": [
-    {"no": 58, "name": "明石城", "pref": "兵庫", "date": "2025-08-11", "photo": "data/IMG_58a.JPG"},
-    {"no": 59, "name": "姫路城", "pref": "兵庫", "date": "2025-08-11", "photo": "data/IMG_59a.JPG"},
-    {"no": 60, "name": "赤穂城", "pref": "兵庫", "date": "2025-08-11", "photo": "data/IMG_60a.JPG"}
+    {"no":67,"name":"津山城","pref":"岡山","date":"2025-08-12","photo":"data/IMG_67a.JPG"},
+    {"no":68,"name":"備中松山城","pref":"岡山","date":"2025-08-12","photo":"data/IMG_68a.JPG"},
+    {"no":69,"name":"鬼ノ城","pref":"岡山","date":"2025-08-12","photo":"data/IMG_69a.JPG"},
+    {"no":70,"name":"岡山城","pref":"岡山","date":"2025-08-12","photo":"data/IMG_70a.JPG"},
+    {"no":77,"name":"高松城","pref":"香川","date":"2025-08-12","photo":"data/IMG_77a.JPG"},
+    {"no":78,"name":"丸亀城","pref":"香川","date":"2025-08-12","photo":"data/IMG_78a.JPG"}
   ],
   "source": "https://kira-to.github.io/makami-fan/"
 }
