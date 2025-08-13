@@ -48,5 +48,9 @@
   { "no":69, "name":"鬼ノ城",     "yomi":"おにのじょう",           "pref":"岡山", "visited":true, "date":"2025-08-12", "photo":"data/IMG_69a.JPG" },
   { "no":70, "name":"岡山城",     "yomi":"おかやまじょう",         "pref":"岡山", "visited":true, "date":"2025-08-12", "photo":"data/IMG_70a.JPG" },
   { "no":77, "name":"高松城",     "yomi":"たかまつじょう",         "pref":"香川", "visited":true, "date":"2025-08-12", "photo":"data/IMG_77a.JPG" },
-  { "no":78, "name":"丸亀城",     "yomi":"まるがめじょう",         "pref":"香川", "visited":true, "date":"2025-08-12", "photo":"data/IMG_78a.JPG" }
+  { "no":78, "name":"丸亀城",     "yomi":"まるがめじょう",         "pref":"香川", "visited":true, "date":"2025-08-12", "photo":"data/IMG_78a.JPG" },
+  { "no":80, "name":"湯築城",     "yomi":"ゆづきじょう",           "pref":"愛媛", "visited":true, "date":"2025-08-13", "photo":"data/IMG_80a.JPG" },
+  { "no":81, "name":"松山城",     "yomi":"まつやまじょう",         "pref":"愛媛", "visited":true, "date":"2025-08-13", "photo":"data/IMG_81a.JPG" },
+  { "no":82, "name":"大洲城",     "yomi":"おおずじょう",           "pref":"愛媛", "visited":true, "date":"2025-08-13", "photo":"data/IMG_82a.JPG" },
+  { "no":83, "name":"宇和島城",   "yomi":"うわじまじょう",         "pref":"愛媛", "visited":true, "date":"2025-08-13", "photo":"data/IMG_83a.JPG" }
 ]

@@ -1,13 +1,11 @@
 {
-  "updated": "2025-08-12",
-  "progress": { "visited": 47, "total": 100, "ratio": 0.47 },
+  "updated": "2025-08-13",
+  "progress": { "visited": 51, "total": 100, "ratio": 0.51 },
   "latest": [
-    {"no":67,"name":"津山城","pref":"岡山","date":"2025-08-12","photo":"data/IMG_67a.JPG"},
-    {"no":68,"name":"備中松山城","pref":"岡山","date":"2025-08-12","photo":"data/IMG_68a.JPG"},
-    {"no":69,"name":"鬼ノ城","pref":"岡山","date":"2025-08-12","photo":"data/IMG_69a.JPG"},
-    {"no":70,"name":"岡山城","pref":"岡山","date":"2025-08-12","photo":"data/IMG_70a.JPG"},
-    {"no":77,"name":"高松城","pref":"香川","date":"2025-08-12","photo":"data/IMG_77a.JPG"},
-    {"no":78,"name":"丸亀城","pref":"香川","date":"2025-08-12","photo":"data/IMG_78a.JPG"}
+    {"no":80,"name":"湯築城","pref":"愛媛","date":"2025-08-13","photo":"data/IMG_80a.JPG"},
+    {"no":81,"name":"松山城","pref":"愛媛","date":"2025-08-13","photo":"data/IMG_81a.JPG"},
+    {"no":82,"name":"大洲城","pref":"愛媛","date":"2025-08-13","photo":"data/IMG_82a.JPG"},
+    {"no":83,"name":"宇和島城","pref":"愛媛","date":"2025-08-13","photo":"data/IMG_83a.JPG"}
   ],
   "source": "https://kira-to.github.io/makami-fan/"
 }
