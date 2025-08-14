@@ -52,5 +52,7 @@
   { "no":80, "name":"湯築城",     "yomi":"ゆづきじょう",           "pref":"愛媛", "visited":true, "date":"2025-08-13", "photo":"data/IMG_80a.JPG" },
   { "no":81, "name":"松山城",     "yomi":"まつやまじょう",         "pref":"愛媛", "visited":true, "date":"2025-08-13", "photo":"data/IMG_81a.JPG" },
   { "no":82, "name":"大洲城",     "yomi":"おおずじょう",           "pref":"愛媛", "visited":true, "date":"2025-08-13", "photo":"data/IMG_82a.JPG" },
-  { "no":83, "name":"宇和島城",   "yomi":"うわじまじょう",         "pref":"愛媛", "visited":true, "date":"2025-08-13", "photo":"data/IMG_83a.JPG" }
+  { "no":83, "name":"宇和島城",   "yomi":"うわじまじょう",         "pref":"愛媛", "visited":true, "date":"2025-08-13", "photo":"data/IMG_83a.JPG" },
+  { "no":79, "name":"今治城",     "yomi":"いまばりじょう",         "pref":"愛媛", "visited":true, "date":"2025-08-14", "photo":"data/IMG_79a.JPG" },
+  { "no":84, "name":"高知城",     "yomi":"こうちじょう",           "pref":"高知", "visited":true, "date":"2025-08-14", "photo":"data/IMG_84a.JPG" }
 ]
