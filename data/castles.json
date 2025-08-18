@@ -54,5 +54,9 @@
   { "no":82, "name":"大洲城",     "yomi":"おおずじょう",           "pref":"愛媛", "visited":true, "date":"2025-08-13", "photo":"data/IMG_82a.JPG" },
   { "no":83, "name":"宇和島城",   "yomi":"うわじまじょう",         "pref":"愛媛", "visited":true, "date":"2025-08-13", "photo":"data/IMG_83a.JPG" },
   { "no":79, "name":"今治城",     "yomi":"いまばりじょう",         "pref":"愛媛", "visited":true, "date":"2025-08-14", "photo":"data/IMG_79a.JPG" },
-  { "no":84, "name":"高知城",     "yomi":"こうちじょう",           "pref":"高知", "visited":true, "date":"2025-08-14", "photo":"data/IMG_84a.JPG" }
+  { "no":84, "name":"高知城",     "yomi":"こうちじょう",           "pref":"高知", "visited":true, "date":"2025-08-14", "photo":"data/IMG_84a.JPG" },
+  { "no":71,"name":"福山城","yomi":"ふくやまじょう","pref":"広島","visited":true,"date":"2025-08-18","photo":"data/IMG_71a.JPG" },
+  { "no":72,"name":"郡山城","yomi":"こおりやまじょう","pref":"広島","visited":true,"date":"2025-08-18","photo":"data/IMG_72a.JPG" },
+  { "no":73,"name":"広島城","yomi":"ひろしまじょう","pref":"広島","visited":true,"date":"2025-08-18","photo":"data/IMG_73a.JPG" },
+  { "no":74,"name":"岩国城","yomi":"いわくにじょう","pref":"山口","visited":true,"date":"2025-08-18","photo":"data/IMG_74a.JPG" }
 ]
