@@ -650,9 +650,7 @@ function addMapLegend(){
   const wrap = document.createElement('div');
   wrap.id = 'map-legend';
   wrap.style.cssText = [
-    'position:absolute',
-    'right:10px',
-    'bottom:10px',
+    // 位置は後でレスポンシブに切り替える
     'display:flex',
     'gap:12px',
     'align-items:center',
@@ -684,6 +682,31 @@ function addMapLegend(){
   wrap.appendChild(item('未訪問（薄灰）', '#dcdcdc'));
 
   mapEl.appendChild(wrap);
+
+  // --- レスポンシブ配置（モバイルは地図の下に流す） ---
+  const applyLegendLayout = () => {
+    const isNarrow = window.matchMedia('(max-width: 640px)').matches;
+    if (isNarrow) {
+      // 通常フロー: 地図(SVG)の直後に表示
+      wrap.style.position = 'static';
+      wrap.style.right = '';
+      wrap.style.bottom = '';
+      wrap.style.margin = '8px auto 0';
+      wrap.style.justifyContent = 'center';
+      wrap.style.maxWidth = 'min(560px, 100%)';
+    } else {
+      // デスクトップ: 右下オーバーレイ
+      wrap.style.position = 'absolute';
+      wrap.style.right = '10px';
+      wrap.style.bottom = '10px';
+      wrap.style.margin = '0';
+      wrap.style.justifyContent = '';
+      wrap.style.maxWidth = '';
+    }
+  };
+  applyLegendLayout();
+  // 画面回転やサイズ変更に追従
+  window.addEventListener('resize', applyLegendLayout);
 }
 
 // スムーススクロール
