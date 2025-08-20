@@ -1,5 +1,13 @@
 /* ---- Map Hint ---- */
 #map{ position:relative; }
+
+/* ==== 強制上書き: 完了(青)を最優先 ==== */
+#map svg .completed,
+#map svg .completed path,
+#map svg .prefecture.completed path{
+  fill:#2f7ef6 !important;
+  stroke:#1b5fcc !important;
+}
 #map-hint{
   position:absolute; /* 地図の親を relative にしてあればOK */
   top:8px; right:8px; z-index:120; /* 地図より前面に */
@@ -325,6 +333,7 @@ footer a:hover {
 /* 日本地図スタイル */
 #map svg path { fill:#f3f3f3; stroke:#bbb; stroke-width:.5; transition:fill .3s; }
 #map svg path.visited, #map svg .prefecture.visited path { fill:#e63946; }
+#map svg path.completed, #map svg .prefecture.completed path { fill:#2f7ef6 !important; stroke:#1b5fcc !important; }
 
 /* --- Prefecture coverage meter --- */
 .pref-meter{display:grid;grid-template-columns:auto 1fr;gap:.4rem 1rem;

@@ -59,6 +59,60 @@ const castle2Pref = {
 };
 let castlesData = [];
 
+// 旧データ（data/castles.backup.json）があれば visited/date/photo/yomi を引き継ぐ
+async function mergeVisited(baseAll) {
+  try {
+    const oldRes = await fetch('data/castles.backup.json', { cache: 'no-store' });
+    if (!oldRes.ok) return baseAll;
+    const old = await oldRes.json();
+    const oldByNo = new Map((old||[]).map(c => [c.no, c]));
+    return (baseAll||[]).map(c => {
+      const o = oldByNo.get(c.no);
+      if (!o) return c;
+      return {
+        ...c,
+        visited: (o.visited ?? c.visited),
+        date:    (o.date    ?? c.date),
+        photo:   (o.photo   ?? c.photo),
+        yomi:    (o.yomi    ?? c.yomi)
+      };
+    });
+  } catch (e) {
+    return baseAll;
+  }
+}
+
+// 都道府県名→JISコード（JP-__）簡易対応表
+const PREF_JIS = {
+  '北海道':'JP-01','青森':'JP-02','岩手':'JP-03','宮城':'JP-04','秋田':'JP-05','山形':'JP-06','福島':'JP-07',
+  '茨城':'JP-08','栃木':'JP-09','群馬':'JP-10','埼玉':'JP-11','千葉':'JP-12','東京':'JP-13','神奈川':'JP-14',
+  '新潟':'JP-15','富山':'JP-16','石川':'JP-17','福井':'JP-18','山梨':'JP-19','長野':'JP-20',
+  '岐阜':'JP-21','静岡':'JP-22','愛知':'JP-23','三重':'JP-24',
+  '滋賀':'JP-25','京都':'JP-26','大阪':'JP-27','兵庫':'JP-28','奈良':'JP-29','和歌山':'JP-30',
+  '鳥取':'JP-31','島根':'JP-32','岡山':'JP-33','広島':'JP-34','山口':'JP-35',
+  '徳島':'JP-36','香川':'JP-37','愛媛':'JP-38','高知':'JP-39',
+  '福岡':'JP-40','佐賀':'JP-41','長崎':'JP-42','熊本':'JP-43','大分':'JP-44','宮崎':'JP-45','鹿児島':'JP-46','沖縄':'JP-47'
+};
+
+// 県名からJP-__に変換
+function prefNameToCode(name){
+  if(!name) return '';
+  const key = normalizePref(name);
+  // PREF_JISのキーは末尾の都道府県を除いた表記で定義
+  for(const k in PREF_JIS){
+    if(normalizePref(k) === key) return PREF_JIS[k];
+  }
+  return '';
+}
+
+// 城番号/県名からprefCodeを取得（castle2Pref優先、無ければ県名で解決）
+function getPrefCodeForCastle(no, prefName){
+  const direct = castle2Pref[no];
+  if(direct) return /^JP-/.test(String(direct)) ? String(direct) : `JP-${String(direct).padStart(2,'0')}`;
+  const code = prefNameToCode(prefName||'');
+  return code || '';
+}
+
 // 都道府県名表記（北海道は"県"を付けない等）
 function displayPref(pref){
   if(!pref) return '';
@@ -117,15 +171,35 @@ function bindMapClicks(){
         const { num, jp, name } = resolvePrefFromElement(e.target);
         if(!num) return;
 
-        // 対象都道府県の訪問城を抽出
-        const visitedList = castlesData.filter(c=> c.visited && (String(castle2Pref[c.no]).replace(/^JP-/,'').padStart(2,'0')===num));
+        // 対象都道府県の訪問城を抽出（prefコードは getPrefCodeForCastle で解決）
+        const visitedList = castlesData.filter(c=>{
+            if(!c.visited) return false;
+            const code = getPrefCodeForCastle(c.no, c.pref);
+            const n = String(code).replace(/^JP-/,'').padStart(2,'0');
+            return n === num;
+        });
 
         const title = name || jp;
-        const listHtml = visitedList.length
+        // 総数（この都道府県に属する全城）と達成判定
+        const totalList = (castlesData||[]).filter(c => {
+            const code = getPrefCodeForCastle(c.no, c.pref);
+            const n = String(code).replace(/^JP-/,'').padStart(2,'0');
+            return n === num;
+        });
+        const completed = totalList.length > 0 && visitedList.length === totalList.length;
+
+        const headerHtml = completed
+          ? `<div class="pref-completed-msg" style="margin-top:6px;padding:10px 12px;border-radius:8px;background:#e9f2ff;color:#1b5fcc;display:flex;gap:8px;align-items:center;">
+               <span style="font-size:18px;">🎉</span>
+               <div><strong>全城制覇！</strong> ${title} の <strong>${totalList.length}</strong> 城をすべて訪問しました。</div>
+             </div>`
+          : '';
+
+        const bodyHtml = visitedList.length
             ? `<ul style="margin:8px 0 0 18px;">${visitedList.map(c=>`<li>No.${c.no} ${c.name} <small>${formatDate(c.date)}</small></li>`).join('')}</ul>`
             : `<p style="margin:8px 0 0; color:#666;">この都道府県の訪問記録はありません</p>`;
 
-        openInfoModal(title, listHtml);
+        openInfoModal(title, `${headerHtml}${bodyHtml}`);
     });
 }
 
@@ -159,14 +233,17 @@ function openInfoModal(title, html){
 
 // DOM読み込み完了後に初期化
 document.addEventListener('DOMContentLoaded', () => {
-    loadJapanMap().then(loadCastlesData);
+    loadJapanMap()
+      .then(loadCastlesData)
+      .then(() => addMapLegend());
 });
 
 // JSON読み込み
 async function loadCastlesData() {
     try {
         const response = await fetch(`data/castles.json?v=${Date.now()}`);
-        castlesData = await response.json();
+        const base = await response.json();
+        castlesData = await mergeVisited(base);
         initializePage();
     } catch (error) {
         console.error('城データの読み込みに失敗しました:', error);
@@ -276,10 +353,35 @@ function highlightMapMarkers() {
         el.classList.add('visited');
         el.querySelectorAll('path').forEach(p=>p.classList.add('visited'));
     };
+    const markCompleted = (el) => {
+        if(!el) return;
+        // 競合回避: completed 付与時は visited を外す
+        el.classList.remove('visited');
+        el.classList.add('completed');
+        // インラインは使わずCSSに委譲（既存があれば消す）
+        try{ el.style.fill = ''; el.style.stroke = ''; }catch(_){}
+        el.querySelectorAll('path').forEach(p=>{
+          p.classList.remove('visited');
+          p.classList.add('completed');
+          try{ p.style.fill = ''; p.style.stroke = ''; }catch(_){}
+        });
+        // 祖先の.prefecture グループにも反映（グループ側にvisitedが残るケース対策）
+        const group = el.closest && el.closest('.prefecture');
+        if(group){
+          group.classList.remove('visited');
+          group.classList.add('completed');
+          try{ group.style.fill = ''; group.style.stroke = ''; }catch(_){}
+          group.querySelectorAll('path').forEach(p=>{
+            p.classList.remove('visited');
+            p.classList.add('completed');
+            try{ p.style.fill = ''; p.style.stroke = ''; }catch(_){}
+          });
+        }
+    };
 
     // 都道府県パスをハイライト（複数の属性スキーマに対応）
     castlesData.filter(c=>c.visited).forEach(castle => {
-        const prefCode = castle2Pref[castle.no];
+        const prefCode = getPrefCodeForCastle(castle.no, castle.pref);
         if(!prefCode) return;
 
         const num = String(prefCode).replace(/^JP-/,'').padStart(2,'0');
@@ -305,6 +407,7 @@ function highlightMapMarkers() {
         let targets = [];
         const safeQuery = (sel)=>{ try { return svgRoot.querySelector(sel); } catch(_) { return null; } };
         const safeQueryAll = (sel)=>{ try { return Array.from(svgRoot.querySelectorAll(sel)); } catch(_) { return []; } };
+
         for (const sel of candidates) {
             const tAll = safeQueryAll(sel);
             if (tAll.length) targets.push(...tAll);
@@ -333,6 +436,98 @@ function highlightMapMarkers() {
             targets.forEach(el=> markVisited(el));
         }
     });
+
+    // ===== 県内全城訪問の達成判定 =====
+    // Plan A 前提：castlesData に全100件（未訪問含む）が入っているときのみ有効
+    try {
+      if(!Array.isArray(castlesData) || castlesData.length < TOTAL_CASTLES){
+        // 未訪問データが揃っていないため、達成判定はスキップ
+        return;
+      }
+      // 県コードごとの総数/訪問数を集計
+      const totalByPref = {};
+      const visitedByPref = {};
+      const nameByPref = {}; // フォールバック用の県名（title一致検索に利用）
+
+      (castlesData||[]).forEach(c => {
+        const code = getPrefCodeForCastle(c.no, c.pref);
+        if(!code) return; // マッピング不明は対象外
+        totalByPref[code] = (totalByPref[code]||0) + 1;
+        if(c.visited) visitedByPref[code] = (visitedByPref[code]||0) + 1;
+        if(c.pref && !nameByPref[code]) nameByPref[code] = normalizePref(c.pref);
+      });
+
+      // 県コードからSVG要素群を見つけるユーティリティ
+      const getTargetsForPref = (prefCode, prefName) => {
+        if(!prefCode) return [];
+        let targets = [];
+        const num = String(prefCode).replace(/^JP-/,'').padStart(2,'0');
+        const numNoPad = String(parseInt(num,10));
+
+        const safeQuery = (sel)=>{ try { return svgRoot.querySelector(sel); } catch(_) { return null; } };
+        const safeQueryAll = (sel)=>{ try { return Array.from(svgRoot.querySelectorAll(sel)); } catch(_) { return []; } };
+
+        // 直接一致（JP-xx と 数値の両方を試す）
+        const direct = safeQuery(`[data-code="JP-${num}"]`) ||
+                       safeQuery(`[data-jis-code="JP-${num}"]`) ||
+                       safeQuery(`[data-jis="JP-${num}"]`) ||
+                       safeQuery(`#JP-${num}`) ||
+                       safeQuery(`#pref-${num}`) ||
+                       safeQuery(`#prefecture-JP-${num}`) ||
+                       // 数値 data-code の地図に対応
+                       safeQuery(`[data-code="${num}"]`) ||
+                       safeQuery(`[data-code="${numNoPad}"]`) ||
+                       safeQuery(`.prefecture[data-code="${num}"]`) ||
+                       safeQuery(`.prefecture[data-code="${numNoPad}"]`);
+        if (direct) targets.push(direct);
+
+        // .prefecture グループも検索（JP-xx と 数値の両方）
+        const group = safeQuery(`.prefecture[data-code="JP-${num}"]`) ||
+                      safeQuery(`.prefecture[data-jis-code="JP-${num}"]`) ||
+                      safeQuery(`.prefecture[data-jis="JP-${num}"]`) ||
+                      safeQuery(`.prefecture[data-code="${num}"]`) ||
+                      safeQuery(`.prefecture[data-code="${numNoPad}"]`);
+        if (group) targets.push(group);
+
+        // 配下の path も拾う（分割形状対策）
+        const paths = []
+          .concat(safeQueryAll(`.prefecture[data-code="JP-${num}"] path`))
+          .concat(safeQueryAll(`.prefecture[data-code="${num}"] path`))
+          .concat(safeQueryAll(`.prefecture[data-code="${numNoPad}"] path`))
+          .concat(safeQueryAll(`path[data-code="JP-${num}"]`))
+          .concat(safeQueryAll(`path[data-code="${num}"]`))
+          .concat(safeQueryAll(`path[data-code="${numNoPad}"]`))
+          .concat(safeQueryAll(`path[id^="pref-${num}"]`));
+        if (paths.length) targets.push(...paths);
+
+        // title 一致（例: "沖縄 / Okinawa" の先頭の和名と比較）
+        if (targets.length === 0 && prefName) {
+          const titled = Array.from(svgRoot.querySelectorAll('title'))
+            .filter(t=>{
+              const raw = (t.textContent||'').trim();
+              const ja = raw.split('/')[0].trim();
+              return ja === prefName;
+            })
+            .map(t=> t.parentElement);
+          if (titled.length) targets.push(...titled);
+        }
+
+        return Array.from(new Set(targets.filter(Boolean)));
+      };
+
+      Object.keys(totalByPref).forEach(code => {
+        const total = totalByPref[code]||0;
+        const done = visitedByPref[code]||0;
+        if(total>0 && done === total){
+          const targets = getTargetsForPref(code, nameByPref[code]);
+          if(targets.length){
+            targets.forEach(el => markCompleted(el));
+          }
+        }
+      });
+    } catch(e) {
+      // 集計中のエラーは無視（データ不備時の安全策）
+    }
 }
 
 // ギャラリー生成（訪問済みのみ）
@@ -440,6 +635,55 @@ function loadJapanMap(){
       document.querySelector('#map').insertAdjacentHTML('beforeend', svg);
     })
     .catch(err=>console.error('SVG読み込み失敗',err));
+}
+
+// 地図の色説明（凡例）を #map 内に重ねて表示
+function addMapLegend(){
+  const mapEl = document.getElementById('map');
+  if(!mapEl) return;
+  if(document.getElementById('map-legend')) return; // 二重生成防止
+
+  // #map が static の場合は相対配置にしてオーバーレイ可能に
+  const cs = getComputedStyle(mapEl);
+  if(cs.position === 'static'){ mapEl.style.position = 'relative'; }
+
+  const wrap = document.createElement('div');
+  wrap.id = 'map-legend';
+  wrap.style.cssText = [
+    'position:absolute',
+    'right:10px',
+    'bottom:10px',
+    'display:flex',
+    'gap:12px',
+    'align-items:center',
+    'flex-wrap:wrap',
+    'padding:8px 10px',
+    'border-radius:8px',
+    'background:rgba(255,255,255,0.9)',
+    'box-shadow:0 2px 8px rgba(0,0,0,0.12)',
+    'font-size:13px',
+    'color:#333',
+    'z-index:5'
+  ].join(';');
+
+  const item = (label, color) => {
+    const el = document.createElement('div');
+    el.style.cssText = 'display:flex; align-items:center; gap:6px;';
+    const sw = document.createElement('span');
+    sw.style.cssText = `width:14px; height:14px; border-radius:3px; background:${color}; border:1px solid rgba(0,0,0,.15); display:inline-block;`;
+    const tx = document.createElement('span');
+    tx.textContent = label;
+    el.appendChild(sw);
+    el.appendChild(tx);
+    return el;
+  };
+
+  // 配色はCSSの completed/visited に合わせたトーン
+  wrap.appendChild(item('全城達成（青）', '#1976d2'));
+  wrap.appendChild(item('一部訪問（赤）', '#e53935'));
+  wrap.appendChild(item('未訪問（薄灰）', '#dcdcdc'));
+
+  mapEl.appendChild(wrap);
 }
 
 // スムーススクロール
