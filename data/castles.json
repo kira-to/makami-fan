@@ -60,5 +60,7 @@
   { "no":73,"name":"広島城","yomi":"ひろしまじょう","pref":"広島","visited":true,"date":"2025-08-18","photo":"data/IMG_73a.JPG" },
   { "no":74,"name":"岩国城","yomi":"いわくにじょう","pref":"山口","visited":true,"date":"2025-08-18","photo":"data/IMG_74a.JPG" },
   { "no":66,"name":"津和野城","yomi":"つわのじょう","pref":"島根","visited":true,"date":"2025-08-19","photo":"data/IMG_66a.JPG" },
-  { "no":75,"name":"萩城","yomi":"はぎじょう","pref":"山口","visited":true,"date":"2025-08-19","photo":"data/IMG_75a.JPG" }
+  { "no":75,"name":"萩城","yomi":"はぎじょう","pref":"山口","visited":true,"date":"2025-08-19","photo":"data/IMG_75a.JPG" },
+  { "no":95, "name": "岡城", "yomi": "おかじょう", "pref": "大分", "visited": true, "date": "2025-08-20", "photo": "data/IMG_95a.JPG" },
+  { "no":96, "name": "飫肥城", "yomi": "おびじょう", "pref": "宮崎", "visited": true, "date": "2025-08-20", "photo": "data/IMG_96a.JPG" }
 ]
