@@ -687,13 +687,18 @@ function addMapLegend(){
   const applyLegendLayout = () => {
     const isNarrow = window.matchMedia('(max-width: 640px)').matches;
     if (isNarrow) {
-      // 通常フロー: 地図(SVG)の直後に表示
-      wrap.style.position = 'static';
+      // 地図コンテナの下にスペースを確保し、そこに絶対配置で収める
+      // これによりSVGと重ならず、常に画面下側に見える
+      wrap.style.position = 'absolute';
       wrap.style.right = '';
-      wrap.style.bottom = '';
-      wrap.style.margin = '8px auto 0';
+      wrap.style.left = '50%';
+      wrap.style.transform = 'translateX(-50%)';
+      wrap.style.bottom = '10px';
+      wrap.style.margin = '0';
       wrap.style.justifyContent = 'center';
       wrap.style.maxWidth = 'min(560px, 100%)';
+      // 凡例の高さ分＋余白をパディングで確保
+      mapEl.style.paddingBottom = '110px';
     } else {
       // デスクトップ: 右下オーバーレイ
       wrap.style.position = 'absolute';
@@ -702,6 +707,9 @@ function addMapLegend(){
       wrap.style.margin = '0';
       wrap.style.justifyContent = '';
       wrap.style.maxWidth = '';
+      wrap.style.left = '';
+      wrap.style.transform = '';
+      mapEl.style.paddingBottom = '';
     }
   };
   applyLegendLayout();
