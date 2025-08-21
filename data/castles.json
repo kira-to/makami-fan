@@ -823,18 +823,18 @@
     "name": "熊本城",
     "yomi": "",
     "pref": "熊本",
-    "visited": false,
-    "date": null,
-    "photo": ""
+    "visited": true,
+    "date": "2025-08-21",
+    "photo": "data/IMG_92a.JPG"
   },
   {
     "no": 93,
     "name": "人吉城",
     "yomi": "",
     "pref": "熊本",
-    "visited": false,
-    "date": null,
-    "photo": ""
+    "visited": true,
+    "date": "2025-08-21",
+    "photo": "data/IMG_93a.JPG"
   },
   {
     "no": 94,
@@ -868,9 +868,9 @@
     "name": "鹿児島城",
     "yomi": "",
     "pref": "鹿児島",
-    "visited": false,
-    "date": null,
-    "photo": ""
+    "visited": true,
+    "date": "2025-08-21",
+    "photo": "data/IMG_97a.JPG"
   },
   {
     "no": 98,

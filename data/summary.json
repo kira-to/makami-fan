@@ -1,9 +1,10 @@
 {
-  "updated": "2025-08-20",
-  "progress": { "visited": 61, "total": 100, "ratio": 0.61 },
+  "updated": "2025-08-21",
+  "progress": { "visited": 64, "total": 100, "ratio": 0.64 },
   "latest": [
-    {"no":95,"name":"岡城","pref":"大分","date":"2025-08-20","photo":"data/IMG_95a.JPG"},
-    {"no":96,"name":"飫肥城","pref":"宮崎","date":"2025-08-20","photo":"data/IMG_96a.JPG"}
+    {"no":92,"name":"熊本城","pref":"熊本","date":"2025-08-21","photo":"data/IMG_92a.JPG"},
+    {"no":93,"name":"人吉城","pref":"熊本","date":"2025-08-21","photo":"data/IMG_93a.JPG"},
+    {"no":97,"name":"鹿児島城","pref":"鹿児島","date":"2025-08-21","photo":"data/IMG_97a.JPG"}
   ],
   "source": "https://kira-to.github.io/makami-fan/"
 }
