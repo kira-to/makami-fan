@@ -778,27 +778,27 @@
     "name": "名護屋城",
     "yomi": "",
     "pref": "佐賀",
-    "visited": false,
-    "date": null,
-    "photo": ""
+    "visited": true,
+    "date": "2025-08-22",
+    "photo": "data/IMG_87a.JPG"
   },
   {
     "no": 88,
     "name": "吉野ヶ里",
     "yomi": "",
     "pref": "佐賀",
-    "visited": false,
-    "date": null,
-    "photo": ""
+    "visited": true,
+    "date": "2025-08-22",
+    "photo": "data/IMG_88a.JPG"
   },
   {
     "no": 89,
     "name": "佐賀城",
     "yomi": "",
     "pref": "佐賀",
-    "visited": false,
-    "date": null,
-    "photo": ""
+    "visited": true,
+    "date": "2025-08-22",
+    "photo": "data/IMG_89a.JPG"
   },
   {
     "no": 90,
