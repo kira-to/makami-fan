@@ -805,18 +805,18 @@
     "name": "平戸城",
     "yomi": "",
     "pref": "長崎",
-    "visited": false,
-    "date": null,
-    "photo": ""
+    "visited": true,
+    "date": "2025-08-23",
+    "photo": "data/IMG_90a.JPG"
   },
   {
     "no": 91,
     "name": "島原城",
     "yomi": "",
     "pref": "長崎",
-    "visited": false,
-    "date": null,
-    "photo": ""
+    "visited": true,
+    "date": "2025-08-23",
+    "photo": "data/IMG_91a.JPG"
   },
   {
     "no": 92,
