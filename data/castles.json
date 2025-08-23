@@ -841,9 +841,9 @@
     "name": "大分府内城",
     "yomi": "",
     "pref": "大分",
-    "visited": false,
-    "date": null,
-    "photo": ""
+    "visited": true,
+    "date": "2025-08-20",
+    "photo": "data/IMG_94a.JPG"
   },
   {
     "no": 95,
