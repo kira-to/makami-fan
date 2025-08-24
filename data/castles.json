@@ -760,18 +760,18 @@
     "name": "福岡城",
     "yomi": "",
     "pref": "福岡",
-    "visited": false,
-    "date": null,
-    "photo": ""
+    "visited": true,
+    "date": "2025-08-24",
+    "photo": "data/IMG_85a.JPG"
   },
   {
     "no": 86,
     "name": "大野城",
     "yomi": "",
     "pref": "福岡",
-    "visited": false,
-    "date": null,
-    "photo": ""
+    "visited": true,
+    "date": "2025-08-24",
+    "photo": "data/IMG_86a.JPG"
   },
   {
     "no": 87,

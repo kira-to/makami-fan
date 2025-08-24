@@ -1,9 +1,9 @@
 {
   "updated": "2025-08-24",
-  "progress": { "visited": 70, "total": 100, "ratio": 0.70 },
+  "progress": { "visited": 72, "total": 100, "ratio": 0.72 },
   "latest": [
-    {"no":90,"name":"平戸城","pref":"長崎","date":"2025-08-23","photo":"data/IMG_90a.JPG"},
-    {"no":91,"name":"島原城","pref":"長崎","date":"2025-08-23","photo":"data/IMG_91a.JPG"}
+    {"no":85,"name":"福岡城","pref":"福岡","date":"2025-08-24","photo":"data/IMG_85a.JPG"},
+    {"no":86,"name":"大野城","pref":"福岡","date":"2025-08-24","photo":"data/IMG_86a.JPG"}
   ],
   "source": "https://kira-to.github.io/makami-fan/"
 }
