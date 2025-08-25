@@ -244,7 +244,8 @@ function openInfoModal(title, html){
 document.addEventListener('DOMContentLoaded', () => {
     loadJapanMap()
       .then(loadCastlesData)
-      .then(() => addMapLegend());
+      .then(() => addMapLegend())
+      .then(() => updateRankBadge());
 });
 
 // JSON読み込み
@@ -724,6 +725,35 @@ function addMapLegend(){
   applyLegendLayout();
   // 画面回転やサイズ変更に追従
   window.addEventListener('resize', applyLegendLayout);
+}
+
+// ヒーロー内の順位バッジを data/ranking.json から更新
+async function updateRankBadge(){
+  const badge = document.querySelector('.rank-badge');
+  if(!badge) return;
+  try{
+    const res = await fetch(`data/ranking.json?v=${Date.now()}`, { cache: 'no-store' });
+    if(!res.ok) return;
+    const data = await res.json();
+    const dateEl = badge.querySelector('.date');
+    const rankStrong = badge.querySelector('.rank strong');
+
+    if(dateEl && data.date){
+      dateEl.textContent = `${formatShortDate(data.date)} 現在`;
+    }
+    if(rankStrong && (data.rank!==undefined && data.rank!==null)){
+      rankStrong.textContent = `${data.rank} 位`;
+    }
+  }catch(_){/* ネットワークエラー等は無視 */}
+}
+
+// YYYY-MM-DD → M/D
+function formatShortDate(isoDate){
+  const m = /^([0-9]{4})-([0-9]{2})-([0-9]{2})$/.exec(String(isoDate||''));
+  if(!m) return String(isoDate||'');
+  const mm = parseInt(m[2],10);
+  const dd = parseInt(m[3],10);
+  return `${mm}/${dd}`;
 }
 
 // スムーススクロール
