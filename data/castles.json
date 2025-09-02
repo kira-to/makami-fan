@@ -13,18 +13,18 @@
     "name": "五稜郭",
     "yomi": "",
     "pref": "北海道",
-    "visited": false,
-    "date": null,
-    "photo": ""
+    "visited": true,
+    "date": "2025-09-02",
+    "photo": "data/IMG_2a.JPG"
   },
   {
     "no": 3,
     "name": "松前城",
     "yomi": "",
     "pref": "北海道",
-    "visited": false,
-    "date": null,
-    "photo": ""
+    "visited": true,
+    "date": "2025-09-02",
+    "photo": "data/IMG_3a.JPG"
   },
   {
     "no": 4,
