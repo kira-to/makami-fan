@@ -58,18 +58,18 @@
     "name": "多賀城",
     "yomi": "",
     "pref": "宮城",
-    "visited": false,
-    "date": null,
-    "photo": ""
+    "visited": true,
+    "date": "2025-09-04",
+    "photo": "data/IMG_7a.JPG"
   },
   {
     "no": 8,
     "name": "仙台城",
     "yomi": "",
     "pref": "宮城",
-    "visited": false,
-    "date": null,
-    "photo": ""
+    "visited": true,
+    "date": "2025-09-04",
+    "photo": "data/IMG_8a.JPG"
   },
   {
     "no": 9,
@@ -85,9 +85,9 @@
     "name": "山形城",
     "yomi": "",
     "pref": "山形",
-    "visited": false,
-    "date": null,
-    "photo": ""
+    "visited": true,
+    "date": "2025-09-04",
+    "photo": "data/IMG_10a.JPG"
   },
   {
     "no": 11,
