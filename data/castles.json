@@ -427,9 +427,9 @@
     "name": "松阪城",
     "yomi": "",
     "pref": "三重",
-    "visited": false,
-    "date": null,
-    "photo": ""
+    "visited": true,
+    "date": "2025-09-08",
+    "photo": "data/IMG_48a.JPG"
   },
   {
     "no": 49,
@@ -679,9 +679,9 @@
     "name": "徳島城",
     "yomi": "",
     "pref": "徳島",
-    "visited": false,
-    "date": null,
-    "photo": ""
+    "visited": true,
+    "date": "2025-09-08",
+    "photo": "data/IMG_76a.JPG"
   },
   {
     "no": 77,
