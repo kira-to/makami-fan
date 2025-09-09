@@ -1,10 +1,10 @@
 {
-  "updated": "2025-09-08",
-  "progress": { "visited": 21, "total": 100, "ratio": 0.21 },
+  "updated": "2025-09-09",
+  "progress": { "visited": 84, "total": 100, "ratio": 0.84 },
   "latest": [
-    {"no":48, "name":"松阪城", "pref":"三重", "date":"2025-09-08", "photo":"data/IMG_48a.JPG"},
-    {"no":76, "name":"徳島城", "pref":"徳島", "date":"2025-09-08", "photo":"data/IMG_76a.JPG"},
-    {"no":10, "name":"山形城", "pref":"山形", "date":"2025-09-04", "photo":"data/IMG_10a.JPG"}
+    {"no":56, "name":"竹田城", "pref":"兵庫", "date":"2025-09-09", "photo":"data/IMG_56a.JPG"},
+    {"no":57, "name":"篠山城", "pref":"兵庫", "date":"2025-09-09", "photo":"data/IMG_57a.JPG"},
+    {"no":48, "name":"松阪城", "pref":"三重", "date":"2025-09-08", "photo":"data/IMG_48a.JPG"}
   ],
   "source": "https://kira-to.github.io/makami-fan/"
 }

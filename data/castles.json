@@ -499,18 +499,18 @@
     "name": "竹田城",
     "yomi": "",
     "pref": "兵庫",
-    "visited": false,
-    "date": null,
-    "photo": ""
+    "visited": true,
+    "date": "2025-09-09",
+    "photo": "data/IMG_56a.JPG"
   },
   {
     "no": 57,
     "name": "篠山城",
     "yomi": "",
     "pref": "兵庫",
-    "visited": false,
-    "date": null,
-    "photo": ""
+    "visited": true,
+    "date": "2025-09-09",
+    "photo": "data/IMG_57a.JPG"
   },
   {
     "no": 58,

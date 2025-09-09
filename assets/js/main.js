@@ -310,9 +310,15 @@ function renderWallProgress() {
     }
 
     // 数値情報を更新
-    const info = document.getElementById('wall-info');
-    const percent = Math.round((visited / total) * 100);
-    if (info) info.textContent = `${visited} / ${total}（${percent}%）`;
+  const info = document.getElementById('wall-info');
+  const percent = Math.round((visited / total) * 100);
+  if (info) {
+    // 手動固定指定がある場合は上書きしない（表示系のみ任意固定を許容）
+    const fixed = info.getAttribute('data-fixed');
+    if (fixed !== '1') {
+      info.textContent = `${visited} / ${total}（${percent}%）`;
+    }
+  }
 
     // 100達成で天守を表示
     if (visited === total) {
