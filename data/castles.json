@@ -562,9 +562,9 @@
     "name": "鳥取城",
     "yomi": "",
     "pref": "鳥取",
-    "visited": false,
-    "date": null,
-    "photo": ""
+    "visited": true,
+    "date": "2025-09-10",
+    "photo": "data/IMG_63a.JPG"
   },
   {
     "no": 64,
