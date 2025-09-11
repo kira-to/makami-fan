@@ -11,7 +11,7 @@
   {
     "no": 2,
     "name": "五稜郭",
-    "yomi": "",
+    "yomi": "ごりょうかく",
     "pref": "北海道",
     "visited": true,
     "date": "2025-09-02",
@@ -20,7 +20,7 @@
   {
     "no": 3,
     "name": "松前城",
-    "yomi": "",
+    "yomi": "まつまえじょう",
     "pref": "北海道",
     "visited": true,
     "date": "2025-09-02",
@@ -29,7 +29,7 @@
   {
     "no": 4,
     "name": "弘前城",
-    "yomi": "",
+    "yomi": "ひろさきじょう",
     "pref": "青森",
     "visited": true,
     "date": "2025-09-03",
@@ -38,7 +38,7 @@
   {
     "no": 5,
     "name": "根城",
-    "yomi": "",
+    "yomi": "ねじょう",
     "pref": "青森",
     "visited": true,
     "date": "2025-09-03",
@@ -47,7 +47,7 @@
   {
     "no": 6,
     "name": "盛岡城",
-    "yomi": "",
+    "yomi": "もりおかじょう",
     "pref": "岩手",
     "visited": true,
     "date": "2025-09-03",
@@ -56,7 +56,7 @@
   {
     "no": 7,
     "name": "多賀城",
-    "yomi": "",
+    "yomi": "たがじょう",
     "pref": "宮城",
     "visited": true,
     "date": "2025-09-04",
@@ -65,7 +65,7 @@
   {
     "no": 8,
     "name": "仙台城",
-    "yomi": "",
+    "yomi": "せんだいじょう",
     "pref": "宮城",
     "visited": true,
     "date": "2025-09-04",
@@ -74,7 +74,7 @@
   {
     "no": 9,
     "name": "久保田城",
-    "yomi": "",
+    "yomi": "くぼたじょう",
     "pref": "秋田",
     "visited": false,
     "date": null,
@@ -83,7 +83,7 @@
   {
     "no": 10,
     "name": "山形城",
-    "yomi": "",
+    "yomi": "やまがたじょう",
     "pref": "山形",
     "visited": true,
     "date": "2025-09-04",
@@ -425,7 +425,7 @@
   {
     "no": 48,
     "name": "松阪城",
-    "yomi": "",
+    "yomi": "まつさかじょう",
     "pref": "三重",
     "visited": true,
     "date": "2025-09-08",
@@ -497,7 +497,7 @@
   {
     "no": 56,
     "name": "竹田城",
-    "yomi": "",
+    "yomi": "たけだじょう",
     "pref": "兵庫",
     "visited": true,
     "date": "2025-09-09",
@@ -506,7 +506,7 @@
   {
     "no": 57,
     "name": "篠山城",
-    "yomi": "",
+    "yomi": "ささやまじょう",
     "pref": "兵庫",
     "visited": true,
     "date": "2025-09-09",
@@ -560,7 +560,7 @@
   {
     "no": 63,
     "name": "鳥取城",
-    "yomi": "",
+    "yomi": "とっとりじょう",
     "pref": "鳥取",
     "visited": true,
     "date": "2025-09-10",
@@ -569,20 +569,20 @@
   {
     "no": 64,
     "name": "松江城",
-    "yomi": "",
+    "yomi": "まつえじょう",
     "pref": "島根",
-    "visited": false,
-    "date": null,
-    "photo": ""
+    "visited": true,
+    "date": "2025-09-11",
+    "photo": "data/IMG_64a.JPG"
   },
   {
     "no": 65,
     "name": "月山富田城",
-    "yomi": "",
+    "yomi": "がっさんとだじょう",
     "pref": "島根",
-    "visited": false,
-    "date": null,
-    "photo": ""
+    "visited": true,
+    "date": "2025-09-11",
+    "photo": "data/IMG_65a.JPG"
   },
   {
     "no": 66,
@@ -677,7 +677,7 @@
   {
     "no": 76,
     "name": "徳島城",
-    "yomi": "",
+    "yomi": "とくしまじょう",
     "pref": "徳島",
     "visited": true,
     "date": "2025-09-08",
@@ -758,7 +758,7 @@
   {
     "no": 85,
     "name": "福岡城",
-    "yomi": "",
+    "yomi": "ふくおかじょう",
     "pref": "福岡",
     "visited": true,
     "date": "2025-08-24",
@@ -767,7 +767,7 @@
   {
     "no": 86,
     "name": "大野城",
-    "yomi": "",
+    "yomi": "おおのじょう",
     "pref": "福岡",
     "visited": true,
     "date": "2025-08-24",
@@ -776,7 +776,7 @@
   {
     "no": 87,
     "name": "名護屋城",
-    "yomi": "",
+    "yomi": "なごやじょう",
     "pref": "佐賀",
     "visited": true,
     "date": "2025-08-22",
@@ -785,7 +785,7 @@
   {
     "no": 88,
     "name": "吉野ヶ里",
-    "yomi": "",
+    "yomi": "よしのがり",
     "pref": "佐賀",
     "visited": true,
     "date": "2025-08-22",
@@ -794,7 +794,7 @@
   {
     "no": 89,
     "name": "佐賀城",
-    "yomi": "",
+    "yomi": "さがじょう",
     "pref": "佐賀",
     "visited": true,
     "date": "2025-08-22",
@@ -803,7 +803,7 @@
   {
     "no": 90,
     "name": "平戸城",
-    "yomi": "",
+    "yomi": "ひらどじょう",
     "pref": "長崎",
     "visited": true,
     "date": "2025-08-23",
@@ -812,7 +812,7 @@
   {
     "no": 91,
     "name": "島原城",
-    "yomi": "",
+    "yomi": "しまばらじょう",
     "pref": "長崎",
     "visited": true,
     "date": "2025-08-23",
@@ -821,7 +821,7 @@
   {
     "no": 92,
     "name": "熊本城",
-    "yomi": "",
+    "yomi": "くまもとじょう",
     "pref": "熊本",
     "visited": true,
     "date": "2025-08-21",
@@ -830,7 +830,7 @@
   {
     "no": 93,
     "name": "人吉城",
-    "yomi": "",
+    "yomi": "ひとよしじょう",
     "pref": "熊本",
     "visited": true,
     "date": "2025-08-21",
@@ -839,7 +839,7 @@
   {
     "no": 94,
     "name": "大分府内城",
-    "yomi": "",
+    "yomi": "おおいたふないじょう",
     "pref": "大分",
     "visited": true,
     "date": "2025-08-20",
@@ -866,7 +866,7 @@
   {
     "no": 97,
     "name": "鹿児島城",
-    "yomi": "",
+    "yomi": "かごしまじょう",
     "pref": "鹿児島",
     "visited": true,
     "date": "2025-08-21",
