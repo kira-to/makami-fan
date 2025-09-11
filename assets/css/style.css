@@ -423,6 +423,23 @@ ruby rt {
     font-size: 0.65em;
 }
 
+/* ===== Endgame Countdown ===== */
+#endgame .endgame-wrap{display:flex;align-items:baseline;gap:14px;margin-bottom:10px}
+#endgame .endgame-counter{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:900;color:#d62828;letter-spacing:.02em;text-shadow:0 2px 8px rgba(214,40,40,.25);transition:transform .2s ease}
+#endgame .endgame-counter.boom{animation:end-pulse .25s ease}
+@keyframes end-pulse{0%{transform:scale(1)}50%{transform:scale(1.08)}100%{transform:scale(1)}}
+#endgame .endgame-sub{color:#555;font-weight:700}
+
+.endgame-list{list-style:none;padding:0;margin:8px 0 0;display:grid;gap:8px}
+.endgame-item{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:10px;background:#fff;border:1px solid #eee;border-radius:10px;padding:10px 12px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.endgame-item .badge{background:#1d3557;color:#fff;font-weight:800;font-size:.85rem;padding:.25rem .5rem;border-radius:6px}
+.endgame-item .tit{color:#222}
+.endgame-item .loc{color:#666;font-size:.9rem}
+.endgame-item.cleared{opacity:.5;text-decoration:line-through;position:relative}
+.endgame-item.flash{animation:end-flash .8s ease}
+@keyframes end-flash{0%{box-shadow:0 0 0 rgba(255,215,0,0)}30%{box-shadow:0 0 16px rgba(255,215,0,.9)}100%{box-shadow:0 0 0 rgba(255,215,0,0)}}
+#endgame .confetti{text-align:center;font-size:1.2rem;margin-top:8px;color:#2f7ef6;font-weight:900}
+
 /* タイムラインスクロールボックス */
 .timeline-scrollbox{
     max-height: 300px;

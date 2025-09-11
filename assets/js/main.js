@@ -1,7 +1,24 @@
+
 // 100名城チャレンジサイト メインスクリプト
 
 // 総城数（変更する場合はここを修正）
 const TOTAL_CASTLES = 100;
+// 終盤の未登城ターゲット（固定表示用）
+const ENDGAME_TARGETS = [
+  { no: 9,  name: '久保田城',   yomi: 'くぼたじょう',   pref: '秋田', city: '秋田県秋田市' },
+  { no: 21, name: '江戸城',     yomi: 'えどじょう',     pref: '東京', city: '東京都千代田区' },
+  { no: 23, name: '小田原城',   yomi: 'おだわらじょう', pref: '神奈川', city: '神奈川県小田原市' },
+  { no: 38, name: '岩村城',     yomi: 'いわむらじょう', pref: '岐阜', city: '岐阜県恵那市' },
+  { no: 39, name: '岐阜城',     yomi: 'ぎふじょう',     pref: '岐阜', city: '岐阜県岐阜市' },
+  { no: 41, name: '駿府城',     yomi: 'すんぷじょう',   pref: '静岡', city: '静岡県静岡市' },
+  { no: 42, name: '掛川城',     yomi: 'かけがわじょう', pref: '静岡', city: '静岡県掛川市' },
+  { no: 43, name: '犬山城',     yomi: 'いぬやまじょう', pref: '愛知', city: '愛知県犬山市' },
+  { no: 44, name: '名古屋城',   yomi: 'なごやじょう',   pref: '愛知', city: '愛知県名古屋市' },
+  { no: 45, name: '岡崎城',     yomi: 'おかざきじょう', pref: '愛知', city: '愛知県岡崎市' },
+  { no: 46, name: '長篠城',     yomi: 'ながしのじょう', pref: '愛知', city: '愛知県新城市' },
+  { no: 53, name: '二条城',     yomi: 'にじょうじょう', pref: '京都', city: '京都府京都市' },
+  { no: 54, name: '大阪城',     yomi: 'おおさかじょう', pref: '大阪', city: '大阪府大阪市' }
+];
 // 城番号→都道府県ID 対応表（MapSVG）
 const castle2Pref = {
   1:"1",   // 北海道
@@ -278,6 +295,7 @@ function initializePage() {
     bindMapClicks();
     generateGallery();
     updatePrefCoverage(castlesData);
+    renderEndgame();
 }
 
 // 進捗バー更新
@@ -558,10 +576,13 @@ function generateGallery() {
     visitedCastles.forEach(castle => {
         const figure = document.createElement('figure');
         const imgSrc = castle.photo ? castle.photo : `data/IMG_${castle.no}.JPG`;
+        const nameHtml = castle.yomi
+          ? `<ruby><rb>${castle.name}</rb><rt>${castle.yomi}</rt></ruby>`
+          : castle.name;
         figure.innerHTML = `
             <img src="${imgSrc}" alt="${castle.name}" onerror="this.onerror=null;this.src='data/IMG_${castle.no}a.JPG';">
             <figcaption>
-                <strong>${castle.name}</strong><br>
+                <strong>${nameHtml}</strong><br>
                 No.${castle.no} (${displayPref(castle.pref)})<br>
                 <small>${formatDate(castle.date)}</small>
             </figcaption>
@@ -760,6 +781,70 @@ function formatShortDate(isoDate){
   const mm = parseInt(m[2],10);
   const dd = parseInt(m[3],10);
   return `${mm}/${dd}`;
+}
+
+// === 終盤カウントダウン＆未登城リスト描画 ===
+function renderEndgame(){
+  const counterEl = document.getElementById('endgame-left');
+  const listEl = document.getElementById('endgame-list');
+  if(!counterEl || !listEl) return;
+
+  const visitedSet = new Set((castlesData||[]).filter(c=>c.visited).map(c=>c.no));
+  const targets = [...ENDGAME_TARGETS].sort((a,b)=>a.no-b.no);
+  const remaining = targets.filter(t=>!visitedSet.has(t.no));
+
+  const to = remaining.length;
+  const current = parseInt(counterEl.textContent.replace(/\D/g,'')) || 0;
+  animateEndgameCounter(counterEl, current, to);
+
+  listEl.innerHTML = '';
+  targets.forEach(t=>{
+    const li = document.createElement('li');
+    const isCleared = visitedSet.has(t.no);
+    li.className = 'endgame-item' + (isCleared ? ' cleared' : '');
+    const c = (castlesData||[]).find(c=>c.no===t.no);
+    const yomi = t.yomi || (c && c.yomi) || '';
+    const nameHtml = yomi
+      ? `<ruby><rb>${t.name}</rb><rt>${yomi}</rt></ruby>`
+      : t.name;
+    li.innerHTML = `
+      <span class="badge">No.${String(t.no).padStart(2,'0')}</span>
+      <strong class="tit">${nameHtml}</strong>
+      <span class="loc">${t.city}</span>
+    `;
+    listEl.appendChild(li);
+    if(isCleared){
+      li.classList.add('flash');
+      setTimeout(()=> li.classList.remove('flash'), 1200);
+    }
+  });
+}
+
+function animateEndgameCounter(el, from, to){
+  if(from===to){ el.textContent = to; return; }
+  const duration = 600;
+  const start = performance.now();
+  const easeOutCubic = x=>1-Math.pow(1-x,3);
+  function tick(now){
+    const p = Math.min(1, (now-start)/duration);
+    const v = Math.round(from + (to-from)*easeOutCubic(p));
+    el.textContent = v;
+    if(el.parentElement) el.parentElement.classList.add('boom');
+    if(p<1){ requestAnimationFrame(tick); }
+    else{
+      setTimeout(()=>{ if(el.parentElement) el.parentElement.classList.remove('boom'); }, 200);
+      if(to===0){
+        try{
+          el.closest('#endgame')?.insertAdjacentHTML('beforeend', '<div class="confetti">🎉 コンプリート！ 🎉</div>');
+          setTimeout(()=>{
+            const c = el.closest('#endgame')?.querySelector('.confetti');
+            if(c && c.parentNode) c.parentNode.removeChild(c);
+          }, 2000);
+        }catch(_){/* noop */}
+      }
+    }
+  }
+  requestAnimationFrame(tick);
 }
 
 // スムーススクロール
