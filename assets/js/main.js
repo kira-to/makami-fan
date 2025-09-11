@@ -257,12 +257,16 @@ function openInfoModal(title, html){
     document.addEventListener('keydown', onEsc);
 }
 
-// DOM読み込み完了後に初期化
+// DOM読み込み完了後に初期化（地図読み込み失敗時でもデータは必ず読み込む）
 document.addEventListener('DOMContentLoaded', () => {
-    loadJapanMap()
-      .then(loadCastlesData)
-      .then(() => addMapLegend())
-      .then(() => updateRankBadge());
+  const safeLoadMap = () => loadJapanMap().catch(() => { /* 地図読み込み失敗は無視して続行 */ });
+  safeLoadMap()
+    .then(() => loadCastlesData())
+    .then(() => { try{ addMapLegend(); }catch(_){} try{ updateRankBadge(); }catch(_){} })
+    .catch(() => {
+      // 予備: どこかで失敗しても最低限の描画を試行
+      try{ initializePage(); }catch(_){}
+    });
 });
 
 // JSON読み込み
@@ -785,39 +789,54 @@ function formatShortDate(isoDate){
 
 // === 終盤カウントダウン＆未登城リスト描画 ===
 function renderEndgame(){
-  const counterEl = document.getElementById('endgame-left');
-  const listEl = document.getElementById('endgame-list');
-  if(!counterEl || !listEl) return;
-
-  const visitedSet = new Set((castlesData||[]).filter(c=>c.visited).map(c=>c.no));
-  const targets = [...ENDGAME_TARGETS].sort((a,b)=>a.no-b.no);
-  const remaining = targets.filter(t=>!visitedSet.has(t.no));
-
-  const to = remaining.length;
-  const current = parseInt(counterEl.textContent.replace(/\D/g,'')) || 0;
-  animateEndgameCounter(counterEl, current, to);
-
-  listEl.innerHTML = '';
-  targets.forEach(t=>{
-    const li = document.createElement('li');
-    const isCleared = visitedSet.has(t.no);
-    li.className = 'endgame-item' + (isCleared ? ' cleared' : '');
-    const c = (castlesData||[]).find(c=>c.no===t.no);
-    const yomi = t.yomi || (c && c.yomi) || '';
-    const nameHtml = yomi
-      ? `<ruby><rb>${t.name}</rb><rt>${yomi}</rt></ruby>`
-      : t.name;
-    li.innerHTML = `
-      <span class="badge">No.${String(t.no).padStart(2,'0')}</span>
-      <strong class="tit">${nameHtml}</strong>
-      <span class="loc">${t.city}</span>
-    `;
-    listEl.appendChild(li);
-    if(isCleared){
-      li.classList.add('flash');
-      setTimeout(()=> li.classList.remove('flash'), 1200);
+  try{
+    const counterEl = document.getElementById('endgame-left');
+    const listEl = document.getElementById('endgame-list');
+    if(!counterEl || !listEl){
+      console.debug('renderEndgame: container not found');
+      return;
     }
-  });
+
+    const visitedSet = new Set((castlesData||[]).filter(c=>c.visited).map(c=>c.no));
+    const targets = [...ENDGAME_TARGETS].sort((a,b)=>a.no-b.no);
+    const remaining = targets.filter(t=>!visitedSet.has(t.no));
+
+    const to = remaining.length;
+    const current = parseInt(counterEl.textContent.replace(/\D/g,'')) || 0;
+    animateEndgameCounter(counterEl, current, to);
+
+    listEl.innerHTML = '';
+    targets.forEach(t=>{
+      const li = document.createElement('li');
+      const isCleared = visitedSet.has(t.no);
+      li.className = 'endgame-item' + (isCleared ? ' cleared' : '');
+      const c = (castlesData||[]).find(c=>c.no===t.no);
+      const yomi = t.yomi || (c && c.yomi) || '';
+      const nameHtml = yomi
+        ? `<ruby><rb>${t.name}</rb><rt>${yomi}</rt></ruby>`
+        : t.name;
+      li.innerHTML = `
+        <span class="badge">No.${String(t.no).padStart(2,'0')}</span>
+        <strong class="tit">${nameHtml}</strong>
+        <span class="loc">${t.city}</span>
+      `;
+      listEl.appendChild(li);
+      if(isCleared){
+        li.classList.add('flash');
+        setTimeout(()=> li.classList.remove('flash'), 1200);
+      }
+    });
+
+    if(!listEl.children.length){
+      listEl.innerHTML = '<li class="endgame-item">未登城リストを表示できません（読み込み中または該当なし）</li>';
+    }
+  }catch(err){
+    console.error('renderEndgame error:', err);
+    const listEl = document.getElementById('endgame-list');
+    if(listEl){
+      listEl.innerHTML = '<li class="endgame-item">未登城リストの描画でエラーが発生しました</li>';
+    }
+  }
 }
 
 function animateEndgameCounter(el, from, to){
@@ -829,16 +848,22 @@ function animateEndgameCounter(el, from, to){
     const p = Math.min(1, (now-start)/duration);
     const v = Math.round(from + (to-from)*easeOutCubic(p));
     el.textContent = v;
-    if(el.parentElement) el.parentElement.classList.add('boom');
+    if(el && el.parentElement) { el.parentElement.classList.add('boom'); }
     if(p<1){ requestAnimationFrame(tick); }
     else{
-      setTimeout(()=>{ if(el.parentElement) el.parentElement.classList.remove('boom'); }, 200);
+      setTimeout(()=>{ if(el && el.parentElement) el.parentElement.classList.remove('boom'); }, 200);
       if(to===0){
         try{
-          el.closest('#endgame')?.insertAdjacentHTML('beforeend', '<div class="confetti">🎉 コンプリート！ 🎉</div>');
+          var endgame = el.closest ? el.closest('#endgame') : null;
+          if(endgame){
+            endgame.insertAdjacentHTML('beforeend', '<div class="confetti">🎉 コンプリート！ 🎉</div>');
+          }
           setTimeout(()=>{
-            const c = el.closest('#endgame')?.querySelector('.confetti');
-            if(c && c.parentNode) c.parentNode.removeChild(c);
+            var endgame2 = el.closest ? el.closest('#endgame') : null;
+            if(endgame2){
+              var c = endgame2.querySelector('.confetti');
+              if(c && c.parentNode) c.parentNode.removeChild(c);
+            }
           }, 2000);
         }catch(_){/* noop */}
       }
