@@ -76,9 +76,9 @@
     "name": "久保田城",
     "yomi": "くぼたじょう",
     "pref": "秋田",
-    "visited": false,
-    "date": null,
-    "photo": ""
+    "visited": true,
+    "date": "2025-09-17",
+    "photo": "data/IMG_9a.JPG"
   },
   {
     "no": 10,
