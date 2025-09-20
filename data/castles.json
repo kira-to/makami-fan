@@ -472,18 +472,18 @@
     "name": "二条城",
     "yomi": "",
     "pref": "京都",
-    "visited": false,
-    "date": null,
-    "photo": ""
+    "visited": true,
+    "date": "2025-09-20",
+    "photo": "data/IMG_53a.JPG"
   },
   {
     "no": 54,
     "name": "大阪城",
     "yomi": "",
     "pref": "大阪",
-    "visited": false,
-    "date": null,
-    "photo": ""
+    "visited": true,
+    "date": "2025-09-20",
+    "photo": "data/IMG_54a.JPG"
   },
   {
     "no": 55,
