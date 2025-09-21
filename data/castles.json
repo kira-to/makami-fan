@@ -200,11 +200,11 @@
   {
     "no": 23,
     "name": "小田原城",
-    "yomi": "",
+    "yomi": "おだわらじょう",
     "pref": "神奈川",
-    "visited": false,
-    "date": null,
-    "photo": ""
+    "visited": true,
+    "date": "2025-09-21",
+    "photo": "data/IMG_23a.JPG"
   },
   {
     "no": 24,
@@ -362,11 +362,11 @@
   {
     "no": 41,
     "name": "駿府城",
-    "yomi": "",
+    "yomi": "すんぷじょう",
     "pref": "静岡",
-    "visited": false,
-    "date": null,
-    "photo": ""
+    "visited": true,
+    "date": "2025-09-21",
+    "photo": "data/IMG_41a.JPG"
   },
   {
     "no": 42,
@@ -470,7 +470,7 @@
   {
     "no": 53,
     "name": "二条城",
-    "yomi": "",
+    "yomi": "にじょうじょう",
     "pref": "京都",
     "visited": true,
     "date": "2025-09-20",
@@ -479,7 +479,7 @@
   {
     "no": 54,
     "name": "大阪城",
-    "yomi": "",
+    "yomi": "おおさかじょう",
     "pref": "大阪",
     "visited": true,
     "date": "2025-09-20",
