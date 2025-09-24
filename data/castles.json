@@ -335,11 +335,11 @@
   {
     "no": 38,
     "name": "岩村城",
-    "yomi": "",
+    "yomi": "いわむらじょう",
     "pref": "岐阜",
-    "visited": false,
-    "date": null,
-    "photo": ""
+    "visited": true,
+    "date": "2025-09-24",
+    "photo": "data/IMG_38a.JPG"
   },
   {
     "no": 39,
@@ -371,11 +371,11 @@
   {
     "no": 42,
     "name": "掛川城",
-    "yomi": "",
+    "yomi": "かけがわじょう",
     "pref": "静岡",
-    "visited": false,
-    "date": null,
-    "photo": ""
+    "visited": true,
+    "date": "2025-09-24",
+    "photo": "data/IMG_42a.JPG"
   },
   {
     "no": 43,
@@ -398,20 +398,20 @@
   {
     "no": 45,
     "name": "岡崎城",
-    "yomi": "",
+    "yomi": "おかざきじょう",
     "pref": "愛知",
-    "visited": false,
-    "date": null,
-    "photo": ""
+    "visited": true,
+    "date": "2025-09-24",
+    "photo": "data/IMG_45a.JPG"
   },
   {
     "no": 46,
     "name": "長篠城",
-    "yomi": "",
+    "yomi": "ながしのじょう",
     "pref": "愛知",
-    "visited": false,
-    "date": null,
-    "photo": ""
+    "visited": true,
+    "date": "2025-09-24",
+    "photo": "data/IMG_46a.JPG"
   },
   {
     "no": 47,
