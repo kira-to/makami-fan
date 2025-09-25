@@ -344,11 +344,11 @@
   {
     "no": 39,
     "name": "岐阜城",
-    "yomi": "",
+    "yomi": "ぎふじょう",
     "pref": "岐阜",
-    "visited": false,
-    "date": null,
-    "photo": ""
+    "visited": true,
+    "date": "2025-09-25",
+    "photo": "data/IMG_39a.JPG"
   },
   {
     "no": 40,
@@ -380,20 +380,20 @@
   {
     "no": 43,
     "name": "犬山城",
-    "yomi": "",
+    "yomi": "いぬやまじょう",
     "pref": "愛知",
-    "visited": false,
-    "date": null,
-    "photo": ""
+    "visited": true,
+    "date": "2025-09-25",
+    "photo": "data/IMG_43a.JPG"
   },
   {
     "no": 44,
     "name": "名古屋城",
-    "yomi": "",
+    "yomi": "なごやじょう",
     "pref": "愛知",
-    "visited": false,
-    "date": null,
-    "photo": ""
+    "visited": true,
+    "date": "2025-09-25",
+    "photo": "data/IMG_44a.JPG"
   },
   {
     "no": 45,
