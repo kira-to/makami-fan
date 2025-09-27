@@ -158,7 +158,6 @@
     "yomi": "",
     "pref": "埼玉",
     "visited": false,
-    "date": null,
     "photo": ""
   },
   {
@@ -173,7 +172,6 @@
   {
     "no": 20,
     "name": "佐倉城",
-    "yomi": "",
     "pref": "千葉",
     "visited": false,
     "date": null,
@@ -182,11 +180,11 @@
   {
     "no": 21,
     "name": "江戸城",
-    "yomi": "",
+    "yomi": "えどじょう",
     "pref": "東京",
-    "visited": false,
-    "date": null,
-    "photo": ""
+    "visited": true,
+    "date": "2025-09-26",
+    "photo": "data/IMG_21a.JPG"
   },
   {
     "no": 22,

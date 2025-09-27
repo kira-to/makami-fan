@@ -300,6 +300,54 @@ function initializePage() {
     generateGallery();
     updatePrefCoverage(castlesData);
     renderEndgame();
+    // 固定文言（TL;DR/FAQ/進捗見出し）を最新表示に揃える
+    try { patchStaticTexts(); } catch(_) {}
+}
+
+// 固定文言のDOMを上書きして最新表示にする（index.html を直接編集できない場合の対策）
+function patchStaticTexts(){
+  // 進捗見出し（固定表示）
+  const info = document.getElementById('wall-info');
+  if(info){
+    info.setAttribute('data-fixed','1');
+    info.textContent = '100 / 100（100%）';
+  }
+
+  // TL;DR
+  const tldr = document.getElementById('tldr');
+  if(tldr){
+    const h2 = tldr.querySelector('h2');
+    if(h2) h2.textContent = '要点まとめ（最終更新：2025-09-27）';
+    const img = tldr.querySelector('.tldr-thumb');
+    if(img){ img.src = 'data/IMG_21a.JPG'; img.alt = '江戸城（東京）'; }
+    const ul = tldr.querySelector('ul');
+    if(ul){
+      ul.innerHTML = [
+        '            <li>日本100名城進捗：<strong>100/100</strong></li>',
+        '            <li>最新登城：江戸城（9/26）</li>',
+        '            <li>投票：『ゆるバース2025』受付中（下のボタンから）</li>'
+      ].join('\n');
+    }
+    const pEn = tldr.querySelector('p[lang="en"]');
+    if(pEn){
+      pEn.textContent = "Makami’s “100 Japanese Castles” challenge: 100/100 completed as of 2025-09-27.";
+    }
+  }
+
+  // FAQ（本文）
+  const faq = document.getElementById('faq');
+  if(faq){
+    const ps = Array.from(faq.querySelectorAll('p'));
+    ps.forEach(p=>{
+      const txt = (p.textContent||'').trim();
+      if(/99\s*\/\s*100/.test(txt)){
+        p.innerHTML = 'A. <strong>100/100</strong> です（2025-09-27 更新）。';
+      }
+      if(/岐阜城|犬山城|名古屋城/.test(txt)){
+        p.innerHTML = 'A. 東京の <strong>江戸城（No.21）</strong> です。';
+      }
+    });
+  }
 }
 
 // 進捗バー更新
