@@ -317,20 +317,20 @@ function patchStaticTexts(){
   const tldr = document.getElementById('tldr');
   if(tldr){
     const h2 = tldr.querySelector('h2');
-    if(h2) h2.textContent = '要点まとめ（最終更新：2025-09-27）';
+    if(h2) h2.textContent = '要点まとめ（最終更新：2025-09-28）';
     const img = tldr.querySelector('.tldr-thumb');
     if(img){ img.src = 'data/IMG_21a.JPG'; img.alt = '江戸城（東京）'; }
     const ul = tldr.querySelector('ul');
     if(ul){
       ul.innerHTML = [
-        '            <li>日本100名城進捗：<strong>100/100</strong></li>',
+        '            <li>日本100名城進捗：<strong>100/100（達成！）</strong></li>',
         '            <li>最新登城：江戸城（9/26）</li>',
-        '            <li>投票：『ゆるバース2025』受付中（下のボタンから）</li>'
+        '            <li>『ゆるバース2025』最終結果：<strong>7 位</strong>／応援ありがとうございました！</li>'
       ].join('\n');
     }
     const pEn = tldr.querySelector('p[lang="en"]');
     if(pEn){
-      pEn.textContent = "Makami’s “100 Japanese Castles” challenge: 100/100 completed as of 2025-09-27.";
+      pEn.textContent = "Makami’s “100 Japanese Castles” challenge: 100/100 completed (as of 2025-09-27). Yuruverse 2025 final rank: 7th. Thank you for your support!";
     }
   }
 
@@ -341,7 +341,7 @@ function patchStaticTexts(){
     ps.forEach(p=>{
       const txt = (p.textContent||'').trim();
       if(/99\s*\/\s*100/.test(txt)){
-        p.innerHTML = 'A. <strong>100/100</strong> です（2025-09-27 更新）。';
+        p.innerHTML = 'A. <strong>100/100</strong> です（2025-09-28 更新）。';
       }
       if(/岐阜城|犬山城|名古屋城/.test(txt)){
         p.innerHTML = 'A. 東京の <strong>江戸城（No.21）</strong> です。';
